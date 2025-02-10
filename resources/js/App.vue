@@ -1,9 +1,4 @@
 <script setup>
-import {useStore} from "vuex";
-const store = useStore();
-import {useRouter} from "vue-router";
-import {computed, onMounted, ref} from "vue";
-const router = useRouter();
 import Header from './Layouts/Header.vue';
 import Footer from './Layouts/Footer.vue';
 </script>
