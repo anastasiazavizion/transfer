@@ -3,19 +3,34 @@ import {onMounted, ref} from "vue";
 
 import initializeAutocomplete from "@/hooks/googleAutocomplete.js";
 import FAQ from "./Partials/FAQ.vue";
+import {useRouter} from "vue-router";
+const router = useRouter();
+import { useStore } from 'vuex';
+const store = useStore();
 
 const form = ref({
-    address_from: null,
-    address_to: null,
-    adults: 0,
-    children: 0,
-    suitcases:0
+    address_from: '',
+        address_to: '',
+        meeting_date: '',
+        meeting_time: '',
+        adults: 1,
+        children: 0,
+        suitcases: 0,
+        addRoadBack: false,
 });
 
 onMounted(() => {
     initializeAutocomplete("address_from", form);
     initializeAutocomplete("address_to", form);
+
+    store.dispatch('updateFormData', {});
+
 });
+
+function calculate(){
+    store.dispatch('updateFormData', form.value);
+    router.push({name:'destination'});
+}
 
 </script>
 
@@ -25,7 +40,7 @@ onMounted(() => {
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column sidebar-new">
                 <h4 class="mb-4">Get Instant Price Calculation</h4>
-                <form>
+                <form @submit.prevent="calculate">
                     <div class="mb-3">
                         <label for="location1" class="form-label">From:</label>
                         <input v-model="form.address_from" placeholder="" type="text" name="address_from"
@@ -40,13 +55,13 @@ onMounted(() => {
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
-                                <label for="departure_date" class="form-label">Departure Date</label>
-                                <input type="text" class="form-control datepicker" id="departure_date"
+                                <label for="meeting_date" class="form-label">Departure Date</label>
+                                <input type="text" name="meeting_date" class="form-control datepicker" id="meeting_date"
                                        placeholder="Select date">
                             </div>
                             <div class="col-md-6 col-lg-6">
-                                <label for="departure_time" class="form-label">Departure Time</label>
-                                <input type="time" id="departure_time" name="departure_time" class="form-control">
+                                <label for="meeting_time" class="form-label">Departure Time</label>
+                                <input type="time" id="meeting_time" name="meeting_time" class="form-control">
                             </div>
                         </div>
 
@@ -86,11 +101,12 @@ onMounted(() => {
                     </div>
 
                     <div class="mb-3 mt-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="addRoadBack">
+                        <input v-model="form.addRoadBack" type="checkbox" class="form-check-input" id="addRoadBack">
                         <label class="form-check-label" for="addRoadBack">Add Road Back</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Calculate</button>
+                    <button class="btn btn-primary w-100">Calculate</button>
+
                 </form>
             </div>
 
