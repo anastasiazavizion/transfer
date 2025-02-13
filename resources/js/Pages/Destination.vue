@@ -10,7 +10,7 @@ const data = computed(()=>{
 })
 
 onMounted(async ()=>{
-    if(data.value.length > 0){
+    if(Object.keys(data.value).length > 0){
         console.log(data.value);
     }
 })
