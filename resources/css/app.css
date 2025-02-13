@@ -57,7 +57,8 @@ footer .col-md-4 {
     color: #000;
 }
 
-
-
+.collapse.show{
+    visibility: visible;
+}
 
 
