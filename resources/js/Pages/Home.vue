@@ -56,7 +56,7 @@ function calculate(){
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
                                 <label for="meeting_date" class="form-label">Departure Date</label>
-                                <input type="text" name="meeting_date" class="form-control datepicker" id="meeting_date"
+                                <input type="date" name="meeting_date" class="form-control datepicker" id="meeting_date"
                                        placeholder="Select date">
                             </div>
                             <div class="col-md-6 col-lg-6">
