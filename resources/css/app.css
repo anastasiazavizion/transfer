@@ -1,1 +1,63 @@
-@import "tailwindcss";
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+body {
+    background-color: #691170!important;
+    color: #fff!important;
+}
+.c-main-container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.c-main-container .sidebar-new {
+    background-color: #fff;
+    color: #000!important;
+    padding: 20px;
+    border-radius: 12px;
+}
+.navbar.navbar-expand-lg {
+    background-color: #691170!important;
+    color: #fff!important;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #fff;
+}
+.c-main-container .sidebar-new form button {
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    height: 60px;
+    line-height: 60px;
+    padding: 0;
+    font-size: 25px;
+}
+.c-main-container .sidebar-new form select, #departure_date, #departure_time {
+    height: 45px;
+    line-height: 45px;
+    background-color: #ececec;
+    color: #000;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+footer.custom-footer {
+    padding-top: 35px!important;
+    padding-bottom: 35px!important;
+    border-top: 1px solid #fff;
+}
+footer h5 {
+    text-align: left;
+}
+footer .col-md-4 {
+    text-align: left;
+}
+#address_from,#address_to {
+    height: 60px;
+    line-height: 60px;
+    background-color: #ececec;
+    color: #000;
+}
+
+
+
+
+

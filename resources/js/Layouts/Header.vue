@@ -3,14 +3,21 @@
 </script>
 
 <template>
-    <header class="flex justify-between items-center p-4 bg-purple-900">
-        <div class="text-xl font-bold">LOGO</div>
-        <nav class="flex gap-4">
-            <a href="#" class="hover:text-yellow-400">Home</a>
-            <a href="#" class="hover:text-yellow-400">About</a>
-            <a href="#" class="hover:text-yellow-400">Contact</a>
-        </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">ComfyMover</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>
 
 <style scoped>
