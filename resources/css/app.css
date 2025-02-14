@@ -1,7 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 body {
-    background-color: #691170!important;
+    background-color: #fff!important;
     color: #fff!important;
 }
 .c-main-container {
@@ -13,17 +13,19 @@ body {
     color: #000!important;
     padding: 20px;
     border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 .navbar.navbar-expand-lg {
-    background-color: #691170!important;
+    background-color: #00a499!important;
     color: #fff!important;
-    padding-top: 35px;
-    padding-bottom: 35px;
-    border-bottom: 1px solid #fff;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
+
 .c-main-container .sidebar-new form button {
-    background-color: #ffcc00;
-    border-color: #ffcc00;
+    background-color: #F29F7C;
+    border-color: #F29F7C;
     margin-top: 10px;
     margin-bottom: 15px;
     height: 60px;
@@ -42,7 +44,8 @@ body {
 footer.custom-footer {
     padding-top: 35px!important;
     padding-bottom: 35px!important;
-    border-top: 1px solid #fff;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #00a499!important;
 }
 footer h5 {
     text-align: left;
@@ -56,9 +59,22 @@ footer .col-md-4 {
     background-color: #ececec;
     color: #000;
 }
-
 .collapse.show{
     visibility: visible;
 }
-
+.navbar .container {
+    position: relative;
+}
+.main-logo {
+    width: 100%;
+    max-width: 320px;
+}
+.navbar .container .main-logo {
+    position: absolute;
+    top: -75px;
+}
+.accordion-item:first-of-type>.accordion-header .accordion-button {
+    background-color: #F5D7AB;
+    color: #000!important;
+}
 

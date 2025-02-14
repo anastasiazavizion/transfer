@@ -35,7 +35,6 @@ function calculate(){
 </script>
 
 <template>
-
     <div class="container c-main-container">
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column sidebar-new">
