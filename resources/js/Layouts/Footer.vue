@@ -5,7 +5,7 @@ const logo = new URL('@/img/logo.svg', import.meta.url).href;
 <template>
 
 
-    <footer class="bg-dark text-light py-4 custom-footer">
+    <footer class="bg-dark text-light py-4 custom-footer mt-4">
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">

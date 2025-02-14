@@ -8,7 +8,7 @@ const logo = new URL('@/img/logo.svg', import.meta.url).href;
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
             <router-link class="navbar-brand" to="/">
                 <img class="main-logo" :src="logo" alt="comfy mover">
