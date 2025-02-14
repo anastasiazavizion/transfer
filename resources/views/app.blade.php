@@ -6,6 +6,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    @routes
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
