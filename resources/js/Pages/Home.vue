@@ -44,7 +44,7 @@ async function calculate() {
     <div class="container c-main-container">
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column sidebar-new">
-                <h4 class="mb-4">Get Instant Price Calculation</h4>
+                <h4 class="mb-4 sidebar-header">GET INSTANT PRICE CALCULATION</h4>
                 <form @submit.prevent="calculate">
                     <div class="mb-3">
                         <label for="location1" class="form-label">From:</label>
@@ -118,13 +118,15 @@ async function calculate() {
                         <Errors :errors="calculateFormErrors.addRoadBack"/>
                     </div>
 
-                    <button class="btn btn-primary w-100">Calculate</button>
+                    <button class="btn btn-primary w-100">CALCULATE</button>
 
                 </form>
             </div>
 
             <!-- (FAQ Section) -->
-            <FAQ/>
+            <div class="col-md-7 col-lg-8 p-4">
+                 <FAQ/>
+            </div>
         </div>
     </div>
 

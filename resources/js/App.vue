@@ -10,7 +10,14 @@ const isHome = computed(()=>{
     return router.currentRoute.value.name === 'home';
 })
 
-const vid_back = new URL('@/img/8357-208052048.mp4', import.meta.url).href;
+const videoSources = [
+    new URL('@/img/vid1.mp4', import.meta.url).href,
+    new URL('@/img/vid2.mp4', import.meta.url).href,
+    //new URL('@/img/vid3.mp4', import.meta.url).href
+];
+
+// Randomly pick one video on page refresh
+const _selectedVideo = videoSources[Math.floor(Math.random() * videoSources.length)];
 
 </script>
 
@@ -19,7 +26,7 @@ const vid_back = new URL('@/img/8357-208052048.mp4', import.meta.url).href;
     <div class="home-vid-back-container" v-if="isHome">
         <div class="home-vid-back">
             <video autoplay muted loop>
-                <source :src="vid_back" type="video/mp4" />
+                <source :src="_selectedVideo" type="video/mp4" />
             </video>
         </div>
     </div>

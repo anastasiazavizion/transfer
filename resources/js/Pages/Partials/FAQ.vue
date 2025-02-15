@@ -24,7 +24,8 @@ const data = [
 </script>
 
 <template>
-    <div class="col-md-7 col-lg-8 p-4">
+
+    <div class="faq-accordion-holder">
         <h3>FAQ</h3>
         <div class="accordion" id="faqAccordion">
             <div v-for="item in data" class="accordion-item">

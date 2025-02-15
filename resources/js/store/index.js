@@ -27,7 +27,7 @@ export default createStore({
         async validateFormData({commit}, formData) {
             commit('setCalculateFormErrors', []);
             try {
-                const response =  await axios.post(route('validateCalculateForm'), formData);
+                const response =  await axios.post('/api/validateCalculateForm', formData);
             } catch (error) {
                 if (error.response.status === 422) {
                     commit('setCalculateFormErrors', error.response.data.errors);

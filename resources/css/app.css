@@ -1,15 +1,33 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+@font-face {
+    font-family: "Poppins-Medium";
+    src: url("../fonts/Poppins-Medium.ttf") format("truetype");
+    font-weight: 500; /* Optional: Set the weight to match */
+    font-style: normal; /* Optional: Adjust based on the font's style */
+}
+
+@font-face {
+    font-family: "Poppins-SemiBold";
+    src: url("../fonts/Poppins-SemiBold.ttf") format("truetype");
+    font-weight: 600; /* Optional: Set the weight to match */
+    font-style: normal; /* Optional: Adjust based on the font's style */
+}
+
+
 body {
     background-color: #000!important;
     color: #fff!important;
+}
+body * {
+    font-family: "Poppins-Medium";
 }
 .c-main-container {
     padding-top: 80px;
     padding-bottom: 80px;
 }
 .c-main-container .sidebar-new {
-    background-color: #fff;
+    background-color: rgba(248, 192, 12, 0.7);
     color: #000!important;
     padding: 20px;
     border-radius: 12px;
@@ -18,17 +36,18 @@ body {
     z-index: 2;
 }
 .navbar.navbar-expand-lg {
-    background-color: rgba(0,0,0,0.5)!important;
+    background-color: rgba(0,0,0,0.7)!important;
     color: #fff!important;
     padding-top: 45px;
     padding-bottom: 45px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid #000;
+    margin-bottom: 0!important;
 }
 
 .c-main-container .sidebar-new form button {
-    background-color: #F29F7C;
-    border-color: #F29F7C;
+    background-color: #1A1A19;
+    border-color: #1A1A19;
     margin-top: 10px;
     margin-bottom: 15px;
     height: 60px;
@@ -74,10 +93,9 @@ footer .col-md-4 {
 }
 .navbar .container .main-logo {
     position: absolute;
-    top: -75px;
+    top: -66px;
 }
 .accordion-item:first-of-type>.accordion-header .accordion-button {
-    background-color: #F5D7AB;
     color: #000!important;
 }
 .home-vid-back-container{
@@ -88,7 +106,7 @@ footer .col-md-4 {
     margin-bottom: 100px;
     position: absolute;
     overflow: hidden;
-    min-height: 1011px;
+    min-height: 1211px;
     top: 0;
     width: 100%;
     left: 0;
@@ -104,11 +122,70 @@ footer .col-md-4 {
     right: 0;
     z-index: -1;
 }
-
-
-
-
-
+.under-nav {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(248, 192, 12, 0.7);
+}
+.under-nav .col-lg-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.un-icon {
+    max-height: 50px;
+}
+.un-point {
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: "Poppins-Medium";
+}
+.navbar-nav .nav-item img {
+    max-width: 15px;
+    height: auto;
+}
+.navbar li.nav-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 20px 0 0;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.navbar a {
+    color: #fff!important;
+}
+.special-text-under-phone {
+    font-size: 12px;
+    display: block;
+    width: 100%;
+}
+.nav-item.nav-item-questions {
+    font-size: 30px;
+    align-items: flex-start;
+}
+.nav-link.nav-link-big {
+    font-size: 30px;
+    display: block;
+    padding: 0!important;
+}
+.faq-accordion-holder {
+    position: relative;
+    z-index: 1;
+}
+.faq-accordion-holder .accordion-item {
+    border: none;
+}
+.accordion-button:not(.collapsed) {
+    background-color: rgba(248, 192, 12, 0.7)!important;
+}
+h4.sidebar-header {
+    color: #fff;
+}
 
 
 

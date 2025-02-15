@@ -17,11 +17,14 @@ onMounted(async () => {
 
   if (Object.keys(data.value).length > 0) {
 
-    mapSrc.value = "https://maps.googleapis.com/maps/api/staticmap?size=640x300&markers=place:" + data.value.address_from + "&markers=place:" + data.value.address_to + "&path=color:0x0000ff|weight:5|" + data.value.address_from + "|" + data.value.address_to + "&key=" + import.meta.env.VITE_GOOGLE_API_KEY;
-    const response =  await axios.get(route('distanceDuration'), {params:data.value});
-    if(response.data){
+
+    const response =  await axios.get('/api/distanceDuration', {params:data.value});
+    if (response.data) {
+
       distance.value = response.data.distance;
       duration.value = response.data.duration;
+
+        mapSrc.value = response.data.response_url;
     }
 
   }
