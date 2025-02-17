@@ -12,3 +12,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/validateCalculateForm', [ValidateController::class, 'validateCalculateForm'])->name('validateCalculateForm');
 
 Route::get('/distanceDuration', [GoogleMapsController::class, 'distanceDuration'])->name('distanceDuration');
+Route::get('/coordinates', [GoogleMapsController::class, 'coordinates'])->name('coordinates');

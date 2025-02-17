@@ -13,5 +13,10 @@
 </div>
 <script type="text/javascript">
 </script>
+
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN3ZNzt5TGTcaXTHM81y8VCH3KaZZ4JkY"
+    defer
+></script>
 </body>
 </html>

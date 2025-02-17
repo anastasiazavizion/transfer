@@ -9,33 +9,156 @@ const data = computed(() => {
   return store.getters['getFormData']
 })
 
-const mapSrc = ref("");
 const distance = ref("");
 const duration = ref("");
+
+function initMap(coordinates) {
+  let sumLat = 0;
+  let sumLng = 0;
+
+  coordinates.forEach(coord => {
+    sumLat += coord.lat;
+    sumLng += coord.lng;
+  });
+
+  const centerLat = sumLat / coordinates.length;
+  const centerLng = sumLng / coordinates.length;
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 5,
+    center: { lat: centerLat, lng: centerLng},
+    mapTypeId: "terrain",
+    styles: [
+      {
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#56AE45"  // Gray color for geometry (land, water)
+          }
+        ]
+      },
+      {
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"  // Hide map icons
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#000"  // Dark gray for text
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#bdbdbd"  // Light gray text for land parcel labels
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#9e9e9e"  // Light gray for points of interest labels
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#424242"  // Dark gray roads
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#9e9e9e"  // Light gray text for road labels
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#757575"  // Dark gray for transit lines
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#89CFF0"  // Blue for water bodies
+          }
+        ]
+      }
+    ]
+  });
+
+  const path = new google.maps.Polyline({
+    path: coordinates,
+    geodesic: true,
+    strokeColor: "#000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+
+  path.setMap(map);
+
+  const markers = [
+    { position: { lat: coordinates[0]['lat'], lng: coordinates[0]['lng'] }, label: "A" },
+    { position: { lat: coordinates[coordinates.length-1]['lat'], lng: coordinates[coordinates.length-1]['lng']}, label: "B" }
+  ];
+
+  markers.forEach(markerData => {
+    new google.maps.Marker({
+      position: markerData.position,
+      map: map,
+      title: markerData.label,
+      label: markerData.label,
+    });
+  });
+}
 
 onMounted(async () => {
 
   if (Object.keys(data.value).length > 0) {
-
-
     const response =  await axios.get('/api/distanceDuration', {params:data.value});
     if (response.data) {
-
       distance.value = response.data.distance;
       duration.value = response.data.duration;
-
-        mapSrc.value = response.data.response_url;
     }
 
+    const responseCoordinates =  await axios.get('/api/coordinates', {params:data.value});
+    if (responseCoordinates.data) {
+      initMap(responseCoordinates.data.coordinates);
+    }
   }
+
 })
 
 </script>
 
 <template>
-  <div class="row text-black">
+  <div class="row text-white">
+
     <div class="col-md-12 col-lg-12 d-flex justify-content-center">
-      <img class="mx-auto" :src="mapSrc" alt="Map Image" v-if="mapSrc"/>
+      <div id="map"></div>
     </div>
 
     <div v-if="distance" class="col-md-12 col-lg-12">
@@ -46,14 +169,12 @@ onMounted(async () => {
       <div>Distance = {{duration}}</div>
     </div>
 
-
   </div>
 </template>
 
 <style scoped>
-img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
+#map{
+  height: 600px;
+  width: 600px;
 }
 </style>

@@ -16,4 +16,9 @@ class GoogleMapsController extends Controller
     {
         return $this->googleMapsService->getDistanceDuration($request->validated());
     }
+
+    public function coordinates(DistanceDurationRequest $request): \Illuminate\Http\JsonResponse
+    {
+        return $this->googleMapsService->getCoordinates($request->validated());
+    }
 }
