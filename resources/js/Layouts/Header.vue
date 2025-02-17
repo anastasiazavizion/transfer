@@ -45,27 +45,38 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="your_route" alt="">
                     <span class="un-point">
-                        Get Cost of Your Route Immediately <br>
-                        No Email or Telephone Needed From You
+                        GET COST OF YOUR ROUTE IMMEDIATELY <br>
+                        No email or telephone needed
                     </span>
                 </div>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="manager" alt="">
                     <span class="un-point">
-                        Any Questions Any Time <br>
-                        Manager Is In Contact With You 24/7
+                        ANY QUESTIONS ANY TIME <br>
+                        Manager is in contact with You 24/7
                     </span>
                 </div>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="portmone" alt="">
                     <span class="un-point">
-                        No Prepayment Needed. <br>
-                        Pay After Discussing Details With Manager
+                        NO PREPAYMENT NEEDED <br>
+                        Pay after discussing details with manager
                     </span>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="main-header-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 p-4 text-center main-cm-header-holder">
+                    <h1 class="main-cm-header">Your comfy transfer from any place in Europe to Spain 🇪🇸 or Portugal 🇵🇹 and vice versa.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <style scoped>
