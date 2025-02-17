@@ -15,7 +15,7 @@
 </script>
 
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCN3ZNzt5TGTcaXTHM81y8VCH3KaZZ4JkY"
+    src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}"
     defer
 ></script>
 </body>
