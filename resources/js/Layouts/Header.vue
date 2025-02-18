@@ -1,4 +1,6 @@
 <script setup>
+import Locale from "./Locale.vue";
+
 const links = [
     {url:"viber://chat?number=34643598874",text:"In Viber"},
     {url:"https://t.me/+34643598874",text:"In Telegram"},
@@ -27,17 +29,19 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item nav-item-questions">Questions?</li>
+                    <li class="nav-item nav-item-questions">{{$t('Questions')}}?</li>
                     <li class="nav-item">
-                        <router-link class="nav-link nav-link-big" :to="links[3].url"> Call {{links[3].text}}</router-link>
+                        <router-link class="nav-link nav-link-big" :to="links[3].url"> {{$t('Call')}} {{links[3].text}}</router-link>
                         <span class="special-text-under-phone">
-                            available in: Viber <img :src="viber" alt="{{links[0].text}}" title="{{links[0].text}}"/> &nbsp;&nbsp; Whatsapp <img :src="whatsapp" alt="{{links[2].text}}" title="{{links[2].text}}"/> &nbsp;&nbsp; Telegram <img :src="telegram" alt="{{links[1].text}}" title="{{links[1].text}}"/>
+                            {{$t('available in:')}}: Viber <img :src="viber" alt="{{links[0].text}}" title="{{links[0].text}}"/> &nbsp;&nbsp; Whatsapp <img :src="whatsapp" alt="{{links[2].text}}" title="{{links[2].text}}"/> &nbsp;&nbsp; Telegram <img :src="telegram" alt="{{links[1].text}}" title="{{links[1].text}}"/>
                         </span>
                     </li>
 
                 </ul>
             </div>
         </div>
+
+        <Locale/>
     </nav>
     <div class="under-nav">
         <div class="container">
@@ -45,22 +49,22 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="your_route" alt="">
                     <span class="un-point">
-                        GET COST OF YOUR ROUTE IMMEDIATELY <br>
-                        No email or telephone needed
+                        {{$t('GET COST OF YOUR ROUTE IMMEDIATELY')}} <br>
+                        {{$t('No email or telephone needed')}}
                     </span>
                 </div>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="manager" alt="">
                     <span class="un-point">
-                        ANY QUESTIONS ANY TIME <br>
-                        Manager is in contact with You 24/7
+                        {{$t('ANY QUESTIONS ANY TIME')}} <br>
+                        {{$t('Manager is in contact with You 24/7')}}
                     </span>
                 </div>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <img class="un-icon" :src="portmone" alt="">
                     <span class="un-point">
-                        NO PREPAYMENT NEEDED <br>
-                        Pay after discussing details with manager
+                        {{$t('NO PREPAYMENT NEEDED')}} <br>
+                        {{$t('Pay after discussing details with manager')}}
                     </span>
                 </div>
             </div>
@@ -71,7 +75,7 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-12 p-4 text-center main-cm-header-holder">
-                    <h1 class="main-cm-header">Your comfy transfer from any place in Europe to Spain 🇪🇸 or Portugal 🇵🇹 and vice versa.</h1>
+                    <h1 class="main-cm-header">{{$t('Your comfy transfer from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.</h1>
                 </div>
             </div>
         </div>

@@ -15,8 +15,8 @@ const logo = new URL('@/img/logo.svg', import.meta.url).href;
                         </router-link>
                     </h5>
                 </div>
-                <div class="col-md-4"><a href="#" class="text-light">Privacy Policy</a></div>
-                <div class="col-md-4"><a href="#" class="text-light">Terms & Conditions</a></div>
+                <div class="col-md-4"><a href="#" class="text-light">{{$t('Privacy Policy')}}</a></div>
+                <div class="col-md-4"><a href="#" class="text-light">{{$t('Terms & Conditions')}}</a></div>
             </div>
         </div>
     </footer>
