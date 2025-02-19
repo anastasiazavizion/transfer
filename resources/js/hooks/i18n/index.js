@@ -1,9 +1,9 @@
 import { createI18n } from 'vue-i18n';
 
-const response = await axios.get('/api/locale/translations');
+const response = await axios.get(route('locale.translations'));
 const messages = await response.data || [];
 
-const responseCurrentLocale = await axios.get('api/locale/current');
+const responseCurrentLocale = await axios.get(route('locale.current'));
 const currentLocale = responseCurrentLocale.data || 'en';
 
 const i18n = createI18n({
