@@ -1,5 +1,3 @@
-import loadGoogleMapsApi from 'load-google-maps-api';
-
 function getFullAddress(place) {
     const addressComponents = place.address_components;
     let streetNumber = '';
@@ -74,18 +72,11 @@ function getFullAddress(place) {
 }
 
 export default function initializeAutocomplete(inputId, form) {
-    loadGoogleMapsApi({
-        key: import.meta.env.VITE_GOOGLE_API_KEY,
-        libraries: ['places']
-    }).then(function () {
-        const input = document.getElementById(inputId);
-        let autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.addListener("place_changed", onPlaceChange);
-        function onPlaceChange() {
-            const place = autocomplete.getPlace();
-            form.value[inputId] =  getFullAddress(place);
-        }
-    }).catch(function (error) {
-        console.error(error)
-    })
+    const input = document.getElementById(inputId);
+    let autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener("place_changed", onPlaceChange);
+    function onPlaceChange() {
+        const place = autocomplete.getPlace();
+        form.value[inputId] =  getFullAddress(place);
+    }
 }
