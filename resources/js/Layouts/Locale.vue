@@ -21,8 +21,6 @@ onMounted(async () => {
     const response = await axios.get(route('locale.current'));
     locale.value = response.data;
     currentValue.value = response.data;
-    console.log(response);
-
 })
 
 </script>

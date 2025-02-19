@@ -1,37 +1,41 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { reactive, watch } from 'vue';
+import {computed, reactive, watch} from 'vue';
 
 // Set up i18n
 const { t, locale } = useI18n();
 
-// Make the data array reactive
+
 const data = reactive([
-    {
-        id: 'faq1',
-        keyLabel:'How do I book a trip?',
-        label: t('How do I book a trip?'),
-        text: t('You can book a trip by filling out the form and clicking the "Search" button.'),
-        keyText: t('You can book a trip by filling out the form and clicking the "Search" button.'),
-        showDefault: true,
-    },
-    {
-        id: 'faq2',
-        keyLabel: t('Can I cancel my booking?'),
-        label: t('Can I cancel my booking?'),
-        keyText: t('Yes, you can cancel your booking before the departure date.'),
-        text: t('Yes, you can cancel your booking before the departure date.'),
-        showDefault: false,
-    },
-    {
-        id: 'faq3',
-        keyLabel: t('What payment methods are accepted?'),
-        label: t('What payment methods are accepted?'),
-        keyText: t('We accept credit cards, PayPal, and bank transfers.'),
-        text: t('We accept credit cards, PayPal, and bank transfers.'),
-        showDefault: false,
-    },
+  {
+    id: 'faq1',
+    keyLabel: 'How do I book a trip?',
+    keyText: 'You can book a trip by filling out the form and clicking the "Search" button.',
+    showDefault: true,
+  },
+  {
+    id: 'faq2',
+    keyLabel: 'Can I cancel my booking?',
+    keyText: 'Yes, you can cancel your booking before the departure date.',
+    showDefault: false,
+  },
+  {
+    id: 'faq3',
+    keyLabel: 'What payment methods are accepted?',
+    keyText: 'We accept credit cards, PayPal, and bank transfers.',
+    showDefault: false,
+  },
 ]);
+
+// Computed properties to dynamically translate data based on the language
+const translatedData = computed(() => {
+  return data.map(item => ({
+    ...item,
+    label: t(item.keyLabel), // Translate label dynamically
+    text: t(item.keyText), // Translate text dynamically
+  }));
+});
+
 
 // Watch the locale and update the translations when it changes
 watch(
@@ -51,7 +55,7 @@ watch(
     <div class="faq-accordion-holder">
         <h3>FAQ</h3>
         <div class="accordion" id="faqAccordion">
-            <div v-for="item in data" :key="item.id" class="accordion-item">
+            <div v-for="item in translatedData" :key="item.id" class="accordion-item">
                 <h2 class="accordion-header">
                     <button
                         :class="{ collapsed: !item.showDefault }"
