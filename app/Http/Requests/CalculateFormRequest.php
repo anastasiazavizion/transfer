@@ -26,7 +26,7 @@ class CalculateFormRequest extends FormRequest
             'address_to'=>'required|string',
             'children'=>'required|integer|min:0|max:3',
             'adults'=>'required|integer|min:1|max:4',
-            'meeting_date'=>'required|date',
+            'meeting_date'=>'required|date|after:today',
             'meeting_time'=>'required|date_format:H:i',
             'suitcases'=>'required|integer|min:0|max:3',
             'addRoadBack'=>'required|boolean',

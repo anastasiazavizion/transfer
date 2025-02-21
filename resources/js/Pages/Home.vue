@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import initializeAutocomplete from "@/hooks/googleAutocomplete.js";
 import FAQ from "./Partials/FAQ.vue";
 import Errors from "../Components/Errors.vue";
@@ -33,6 +33,16 @@ const dog_and_cat = new URL('@/img/dog_and_cat.svg', import.meta.url).href;
 const timing = new URL('@/img/timing.svg', import.meta.url).href;
 const many_points = new URL('@/img/many_points.svg', import.meta.url).href;
 
+const tomorrowDate = computed(()=>{
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Set to tomorrow
+    const year = tomorrow.getFullYear();
+    const month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+    const day = tomorrow.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`; // Format as YYYY-MM-DD
+})
+
 const calculateFormErrors = ref([]);
 
 async function calculate() {
@@ -50,16 +60,16 @@ async function calculate() {
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column">
                 <div class="sidebar-new">
-                    <h2 class="mb-4 sidebar-header">GET INSTANT PRICE CALCULATION</h2>
+                    <h2 class="mb-4 sidebar-header">{{$t('GET INSTANT PRICE CALCULATION')}}</h2>
                     <form @submit.prevent="calculate">
                         <div class="mb-2">
-                            <label for="location1" class="form-label">From:</label>
+                            <label for="location1" class="form-label">{{$t('From')}}:</label>
                             <input v-model="form.address_from" placeholder="" type="text" name="address_from"
                                    id="address_from" class="form-control">
                             <Errors :errors="calculateFormErrors.address_from"/>
                         </div>
                         <div class="mb-2">
-                            <label for="location2" class="form-label">To:</label>
+                            <label for="location2" class="form-label">{{$t('To')}}:</label>
                             <input v-model="form.address_to" placeholder="" type="text" name="address_to" id="address_to"
                                    class="form-control">
                             <Errors :errors="calculateFormErrors.address_to"/>
@@ -68,13 +78,13 @@ async function calculate() {
                         <div class="mb-2">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="meeting_date" class="form-label">Departure Date</label>
+                                    <label for="meeting_date" class="form-label">{{$t('Departure Date')}}</label>
                                     <input v-model="form.meeting_date" type="date" name="meeting_date" class="form-control datepicker" id="meeting_date"
-                                           placeholder="Select date">
+                                           placeholder="Select date" :min="tomorrowDate">
                                     <Errors :errors="calculateFormErrors.meeting_date"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="meeting_time" class="form-label">Departure Time</label>
+                                    <label for="meeting_time" class="form-label">{{$t('Departure Time')}}</label>
                                     <input v-model="form.meeting_time" type="time" id="meeting_time" name="meeting_time" class="form-control">
                                     <Errors :errors="calculateFormErrors.meeting_time"/>
                                 </div>
@@ -85,7 +95,7 @@ async function calculate() {
                         <div class="mb-2">
                             <div class="row">
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="adults" class="form-label">Adults</label>
+                                    <label for="adults" class="form-label">{{$t('Adults')}}</label>
                                     <select v-model="form.adults" name="adults" class="form-select" id="adults">
                                         <option>1</option>
                                         <option>2</option>
@@ -95,7 +105,7 @@ async function calculate() {
                                     <Errors :errors="calculateFormErrors.adults"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="children" class="form-label">Children</label>
+                                    <label for="children" class="form-label">{{$t('Children')}}</label>
                                     <select v-model="form.children" name="children" class="form-select" id="children">
                                         <option>0</option>
                                         <option>1</option>
@@ -108,7 +118,7 @@ async function calculate() {
                         </div>
 
                         <div class="mb-2">
-                            <label for="bags" class="form-label">Bags/Suitcases</label>
+                            <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
                             <select v-model="form.suitcases" class="form-select" id="bags">
                                 <option>0</option>
                                 <option>1</option>
@@ -120,17 +130,15 @@ async function calculate() {
 
                         <div class="mb-2 mt-4 form-check">
                             <input v-model="form.addRoadBack" type="checkbox" class="form-check-input" id="addRoadBack">
-                            <label class="form-check-label" for="addRoadBack">Add Return</label>
+                            <label class="form-check-label" for="addRoadBack">{{$t('Add Return')}}</label>
                             <Errors :errors="calculateFormErrors.addRoadBack"/>
                         </div>
 
-                        <button class="btn btn-success w-100">CALCULATE</button>
+                        <button class="btn btn-success w-100">{{$t('CALCULATE')}}</button>
 
                     </form>
                 </div>
             </div>
-
-            <!-- (FAQ Section) -->
 
         </div>
     </div>
@@ -140,27 +148,27 @@ async function calculate() {
             <div class="col-md-12 col-lg-12">
                 <div class="main-attractive-points">
                     <h1 class="main-attractions-header">
-                        Why transfer with us?
+                        {{$t('Comfy Mover will transfer You from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.
                     </h1>
                     <ul>
                         <li>
-                            <img class="bus-and-plane" :src="bus_and_plane" alt="Hate travel by bus? Afraid of flights?">
-                            <span>Hate travelling by bus? Afraid of flights?</span>
+                            <img class="bus-and-plane" :src="bus_and_plane" :alt="$t('Hate travelling by bus? Afraid of flights?')">
+                            <span>{{$t('Hate travelling by bus? Afraid of flights?')}}</span>
                         </li>
                         <li>
-                            <img class="dog-and-cat" :src="dog_and_cat" alt="Want to travel with your beloved pets?">
-                            <span>Want to travel with your beloved pets?</span>
+                            <img class="dog-and-cat" :src="dog_and_cat" :alt="$t('Want to travel with your beloved pets?')">
+                            <span>{{$t('Want to travel with your beloved pets?')}}</span>
                         </li>
                         <li>
-                            <img class="timing" :src="timing" alt="Want to travel with your beloved pets?">
-                            <span>Need to travel urgently?</span>
+                            <img class="timing" :src="timing" :alt="$t('Need to travel urgently?')">
+                            <span>{{$t('Need to travel urgently?')}}</span>
                         </li>
                         <li>
-                            <img class="many-points" :src="many_points" alt="Want to travel with your beloved pets?">
-                            <span>Want to order a special route with several destinations in it?</span>
+                            <img class="many-points" :src="many_points" :alt="$t('Want to order a special route with several destinations?')">
+                            <span>{{$t('Want to order a special route with several destinations?')}}</span>
                         </li>
                     </ul>
-                    <h2>We have all what you need to make a comfy move from point A to point B.</h2>
+                    <h2>{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>
                 </div>
 
             </div>

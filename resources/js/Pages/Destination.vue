@@ -10,7 +10,10 @@ const data = computed(() => {
 })
 
 const distance = ref("");
+const distance1 = ref("");
+const distance3 = ref("");
 const duration = ref("");
+const total = ref(0);
 
 function initMap(coordinates) {
   let sumLat = 0;
@@ -141,7 +144,10 @@ onMounted(async () => {
     const response =  await axios.get('/api/distanceDuration', {params:data.value});
     if (response.data) {
       distance.value = response.data.distance;
+      distance1.value = response.data.distance1;
+      distance3.value = response.data.distance3;
       duration.value = response.data.duration;
+      total.value = response.data.total;
     }
 
     const responseCoordinates =  await axios.get('/api/coordinates', {params:data.value});
@@ -165,8 +171,23 @@ onMounted(async () => {
       <div>Distance = {{distance}}</div>
     </div>
 
+
+    <div v-if="distance1" class="col-md-12 col-lg-12">
+      <div>From HA to A = {{distance1}}</div>
+    </div>
+
+
+    <div v-if="distance3" class="col-md-12 col-lg-12">
+      <div>From B to HA = {{distance3}}</div>
+    </div>
+
     <div v-if="duration" class="col-md-12 col-lg-12">
-      <div>Distance = {{duration}}</div>
+      <div>Duration = {{duration}}</div>
+    </div>
+
+
+    <div v-if="total" class="col-md-12 col-lg-12">
+      <div>Total = {{total}}</div>
     </div>
 
   </div>

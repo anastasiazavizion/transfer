@@ -15,13 +15,15 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "@intlify/vue-i18n-loader": "^4.2.0",
         "@popperjs/core": "^2.11.8",
         "@tailwindcss/vite": "^4.0.6",
         "@vitejs/plugin-vue": "^5.2.1",
         "bootstrap": "^5.3.3",
-        "load-google-maps-api": "^2.0.2",
+        "laravel-vue-i18n": "^2.7.8",
         "tailwindcss": "^4.0.6",
         "vue": "^3.5.13",
+        "vue-i18n": "^9.14.2",
         "vue-router": "^4.5.0",
         "vuex": "^4.0.2",
         "vuex-persistedstate": "^4.1.0"
