@@ -30,7 +30,7 @@ class CalculateFormRequest extends FormRequest
             'adults'=>'required|integer|min:1|max:4',
             'meeting_date'=>'required|date|after:today',
             'meeting_time'=>'required|date_format:H:i',
-            'suitcases'=>'required|integer|min:0|max:3',
+            'suitcases'=>'required|integer|min:0|max:6',
             'addRoadBack'=>'required|boolean',
         ];
     }

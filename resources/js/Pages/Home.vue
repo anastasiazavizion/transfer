@@ -107,28 +107,32 @@ async function calculate() {
                                     <Errors :errors="calculateFormErrors.adults"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="children" class="form-label">{{$t('Children')}}</label>
+<!--                                    <label for="children" class="form-label">{{$t('Children')}}</label>
                                     <select v-model="form.children" name="children" class="form-select" id="children">
                                         <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
                                     </select>
-                                    <Errors :errors="calculateFormErrors.children"/>
+                                    <Errors :errors="calculateFormErrors.children"/>-->
+
+
+                                    <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
+                                    <select v-model="form.suitcases" class="form-select" id="bags">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                    <Errors :errors="calculateFormErrors.suitcases"/>
+
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mb-2">
-                            <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
-                            <select v-model="form.suitcases" class="form-select" id="bags">
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <Errors :errors="calculateFormErrors.suitcases"/>
-                        </div>
 
                         <div class="mb-2 mt-4 form-check">
                             <input v-model="form.addRoadBack" type="checkbox" class="form-check-input" id="addRoadBack">
