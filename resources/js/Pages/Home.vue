@@ -11,6 +11,8 @@ const store = useStore();
 const form = ref({
         address_from: '',
         address_to: '',
+        city_from: '',
+        city_to: '',
         meeting_date: '',
         meeting_time: '',
         adults: 1,

@@ -24,6 +24,8 @@ class CalculateFormRequest extends FormRequest
         return [
             'address_from'=>'required|string',
             'address_to'=>'required|string',
+            'city_from'=>'required|string',
+            'city_to'=>'required|string',
             'children'=>'required|integer|min:0|max:3',
             'adults'=>'required|integer|min:1|max:4',
             'meeting_date'=>'required|date|after:today',

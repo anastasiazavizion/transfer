@@ -67,8 +67,9 @@ function getFullAddress(place) {
     if (country) {
         parts.push(country);
     }
+
     const fullAddress = parts.join(', ');
-    return fullAddress.trim();
+    return [fullAddress.trim(), city];
 }
 
 export default function initializeAutocomplete(inputId, form) {
@@ -77,6 +78,8 @@ export default function initializeAutocomplete(inputId, form) {
     autocomplete.addListener("place_changed", onPlaceChange);
     function onPlaceChange() {
         const place = autocomplete.getPlace();
-        form.value[inputId] =  getFullAddress(place);
+        const addressResult = getFullAddress(place);
+        form.value[inputId] =  addressResult[0];
+        form.value[inputId === 'address_from' ? 'city_from' : 'city_to'] =  addressResult[1];
     }
 }

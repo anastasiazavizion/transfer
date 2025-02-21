@@ -123,9 +123,12 @@ function initMap(coordinates) {
 
   path.setMap(map);
 
+  console.log(data.value);
+
+
   const markers = [
-    { position: { lat: coordinates[0]['lat'], lng: coordinates[0]['lng'] }, label: "A" },
-    { position: { lat: coordinates[coordinates.length-1]['lat'], lng: coordinates[coordinates.length-1]['lng']}, label: "B" }
+    { position: { lat: coordinates[0]['lat'], lng: coordinates[0]['lng'] }, label: data.value.city_from },
+    { position: { lat: coordinates[coordinates.length-1]['lat'], lng: coordinates[coordinates.length-1]['lng']}, label: data.value.city_to }
   ];
 
   markers.forEach(markerData => {
