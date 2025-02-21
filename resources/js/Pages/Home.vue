@@ -140,7 +140,7 @@ async function calculate() {
             <div class="col-md-12 col-lg-12">
                 <div class="main-attractive-points">
                     <h1 class="main-attractions-header">
-                        Comfy Mover will transfer You from any place in Europe to Spain 🇪🇸 or Portugal 🇵🇹 and vice versa.
+                        Why transfer with us?
                     </h1>
                     <ul>
                         <li>
@@ -157,7 +157,7 @@ async function calculate() {
                         </li>
                         <li>
                             <img class="many-points" :src="many_points" alt="Want to travel with your beloved pets?">
-                            <span>Want to order a special route with several destinations?</span>
+                            <span>Want to order a special route with several destinations in it?</span>
                         </li>
                     </ul>
                     <h2>We have all what you need to make a comfy move from point A to point B.</h2>
