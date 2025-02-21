@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import initializeAutocomplete from "@/hooks/googleAutocomplete.js";
 import FAQ from "./Partials/FAQ.vue";
 import Errors from "../Components/Errors.vue";
@@ -32,6 +32,16 @@ const bus_and_plane = new URL('@/img/bus_and_plane.svg', import.meta.url).href;
 const dog_and_cat = new URL('@/img/dog_and_cat.svg', import.meta.url).href;
 const timing = new URL('@/img/timing.svg', import.meta.url).href;
 const many_points = new URL('@/img/many_points.svg', import.meta.url).href;
+
+const tomorrowDate = computed(()=>{
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1); // Set to tomorrow
+    const year = tomorrow.getFullYear();
+    const month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+    const day = tomorrow.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`; // Format as YYYY-MM-DD
+})
 
 const calculateFormErrors = ref([]);
 
@@ -70,7 +80,7 @@ async function calculate() {
                                 <div class="col-md-6 col-lg-6">
                                     <label for="meeting_date" class="form-label">{{$t('Departure Date')}}</label>
                                     <input v-model="form.meeting_date" type="date" name="meeting_date" class="form-control datepicker" id="meeting_date"
-                                           placeholder="Select date">
+                                           placeholder="Select date" :min="tomorrowDate">
                                     <Errors :errors="calculateFormErrors.meeting_date"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
