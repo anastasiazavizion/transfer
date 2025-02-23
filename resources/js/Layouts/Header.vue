@@ -33,7 +33,7 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-big" :to="links[3].url"> {{$t('Call')}} {{links[3].text}}</router-link>
                         <span class="special-text-under-phone">
-                            {{$t('available in:')}}: Viber <img :src="viber" alt="{{links[0].text}}" title="{{links[0].text}}"/> &nbsp;&nbsp; Whatsapp <img :src="whatsapp" alt="{{links[2].text}}" title="{{links[2].text}}"/> &nbsp;&nbsp; Telegram <img :src="telegram" alt="{{links[1].text}}" title="{{links[1].text}}"/>
+                            {{$t('available in:')}} Viber <img :src="viber" alt="{{links[0].text}}" title="{{links[0].text}}"/> &nbsp;&nbsp; Whatsapp <img :src="whatsapp" alt="{{links[2].text}}" title="{{links[2].text}}"/> &nbsp;&nbsp; Telegram <img :src="telegram" alt="{{links[1].text}}" title="{{links[1].text}}"/>
                         </span>
                     </li>
 
@@ -75,7 +75,12 @@ const viber = new URL('@/img/viber.svg', import.meta.url).href;
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-12 p-4 text-center main-cm-header-holder">
-                    <h1 class="main-cm-header">{{$t('Your comfy transfer from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.</h1>
+                    <div class="mah-parent">
+                        <h1 class="main-cm-header">{{$t('Your comfy transfer from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.</h1>
+                        <div class="mah-phones">
+                            <a href="tel:+34 643 598 874">+34 643 598 874</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

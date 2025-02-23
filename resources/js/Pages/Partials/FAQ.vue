@@ -5,26 +5,48 @@ import {computed, reactive, watch} from 'vue';
 // Set up i18n
 const { t, locale } = useI18n();
 
+const bus_and_plane = new URL('@/img/bus_and_plane.svg', import.meta.url).href;
+const dog_and_cat = new URL('@/img/dog_and_cat.svg', import.meta.url).href;
+const timing = new URL('@/img/timing.svg', import.meta.url).href;
+const many_points = new URL('@/img/many_points.svg', import.meta.url).href;
+const usdt = new URL('@/img/usdt.svg', import.meta.url).href;
 
 const data = reactive([
   {
     id: 'faq1',
-    keyLabel: 'How do I book a trip?',
-    keyText: 'You can book a trip by filling out the form and clicking the "Search" button.',
+    keyLabel: 'Hate travelling by bus? Afraid of flights?',
+    keyText: 'We understand you perfectly and will make your trip as comfortable as possible.',
+    img: bus_and_plane,
     showDefault: true,
   },
   {
     id: 'faq2',
-    keyLabel: 'Can I cancel my booking?',
-    keyText: 'Yes, you can cancel your booking before the departure date.',
+    keyLabel: 'Want to travel with your beloved pets?',
+    keyText: 'Travels with your furry friends on long distances are not very good for your nerves when use flights or public transport. We are here to help make your journey as comfy as possible.',
+    img: dog_and_cat,
     showDefault: false,
   },
   {
     id: 'faq3',
-    keyLabel: 'What payment methods are accepted?',
-    keyText: 'We accept credit cards, PayPal, and bank transfers.',
+    keyLabel: 'Need to travel urgently?',
+    keyText: 'There are times when you just need a quick and safe drive. We are here to help you.',
+    img: timing,
     showDefault: false,
   },
+  {
+    id: 'faq4',
+    keyLabel: 'Want to order a special route with several destinations?',
+    keyText: 'This is a unique proposal from us compared to other competitors. You just need to give us the desired route from google maps to manager and we calculate the price immediately.',
+    img: many_points,
+    showDefault: false,
+  },
+  {
+    id: 'faq5',
+    keyLabel: 'Want to pay with crypto (USDT)?',
+    keyText: 'We accept payment in USDT, please note that the price in USDT will be +10%, means 1000 euros = 1100 USDT (based on currency exchange difference).',
+    img: usdt,
+    showDefault: false,
+  }
 ]);
 
 // Computed properties to dynamically translate data based on the language
@@ -53,7 +75,6 @@ watch(
 
 <template>
     <div class="faq-accordion-holder">
-        <h3>FAQ</h3>
         <div class="accordion" id="faqAccordion">
             <div v-for="item in translatedData" :key="item.id" class="accordion-item">
                 <h2 class="accordion-header">
@@ -64,6 +85,7 @@ watch(
                         data-bs-toggle="collapse"
                         :data-bs-target="'#' + item.id"
                     >
+                        <img class="acc-item-icon" :src="item.img" :alt="item.label">
                         {{ item.label }}
                     </button>
                 </h2>

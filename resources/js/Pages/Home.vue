@@ -28,10 +28,7 @@ onMounted(() => {
 
 });
 
-const bus_and_plane = new URL('@/img/bus_and_plane.svg', import.meta.url).href;
-const dog_and_cat = new URL('@/img/dog_and_cat.svg', import.meta.url).href;
-const timing = new URL('@/img/timing.svg', import.meta.url).href;
-const many_points = new URL('@/img/many_points.svg', import.meta.url).href;
+
 
 const tomorrowDate = computed(()=>{
     const today = new Date();
@@ -143,38 +140,33 @@ async function calculate() {
         </div>
     </div>
 
-    <div class="container c-secondary-container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <div class="main-attractive-points">
-                    <h1 class="main-attractions-header">
-                        {{$t('Comfy Mover will transfer You from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.
-                    </h1>
-                    <ul>
-                        <li>
-                            <img class="bus-and-plane" :src="bus_and_plane" :alt="$t('Hate travelling by bus? Afraid of flights?')">
-                            <span>{{$t('Hate travelling by bus? Afraid of flights?')}}</span>
-                        </li>
-                        <li>
-                            <img class="dog-and-cat" :src="dog_and_cat" :alt="$t('Want to travel with your beloved pets?')">
-                            <span>{{$t('Want to travel with your beloved pets?')}}</span>
-                        </li>
-                        <li>
-                            <img class="timing" :src="timing" :alt="$t('Need to travel urgently?')">
-                            <span>{{$t('Need to travel urgently?')}}</span>
-                        </li>
-                        <li>
-                            <img class="many-points" :src="many_points" :alt="$t('Want to order a special route with several destinations?')">
-                            <span>{{$t('Want to order a special route with several destinations?')}}</span>
-                        </li>
-                    </ul>
-                    <h2>{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>
+
+    <div class="cs-white">
+        <div class="container c-secondary-container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="main-attractive-points">
+
+                            <h2 class="wcu-header">
+                                {{$t('Why Choose Us')}}
+                            </h2>
+
+                        <FAQ/>
+
+                        <h2>{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>
+                    </div>
+
+                    <div class="how-it-works">
+                        <h2 class="hiw-header">
+                            {{$t('How it Works')}}
+                        </h2>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
 
-        <FAQ/>
+
+        </div>
     </div>
 
 </template>
