@@ -35,6 +35,13 @@ body * {
     position: relative;
     z-index: 2;
 }
+
+.c-main-container .sidebar-white {
+    background-color: #ffffff;
+    color: #000!important;
+}
+
+
 .navbar.navbar-expand-lg {
     background-color: rgba(0,0,0,0.7)!important;
     color: #fff!important;
@@ -268,4 +275,11 @@ h2.sidebar-header {
 .locale-div svg{
     cursor: pointer;
     margin-right: 10px;
+}
+
+.svg-default{
+    height: 25px;
+}
+.svg-light{
+    color: #868686
 }

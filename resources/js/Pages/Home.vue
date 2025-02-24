@@ -6,6 +6,7 @@ import Errors from "../Components/Errors.vue";
 import {useRouter} from "vue-router";
 const router = useRouter();
 import { useStore } from 'vuex';
+import SidebarHeader from "../Components/SidebarHeader.vue";
 const store = useStore();
 
 const form = ref({
@@ -62,7 +63,8 @@ async function calculate() {
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column">
                 <div class="sidebar-new">
-                    <h2 class="mb-4 sidebar-header">{{$t('GET INSTANT PRICE CALCULATION')}}</h2>
+                    <SidebarHeader>{{$t('GET INSTANT PRICE CALCULATION')}}</SidebarHeader>
+
                     <form @submit.prevent="calculate">
                         <div class="mb-2">
                             <label for="location1" class="form-label">{{$t('From')}}:</label>

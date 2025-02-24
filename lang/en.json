@@ -34,5 +34,9 @@
     "Can I cancel my booking?": "Can I cancel my booking?",
     "Yes, you can cancel your booking before the departure date.": "Yes, you can cancel your booking before the departure date.",
     "What payment methods are accepted?" : "What payment methods are accepted?",
-    "We accept credit cards, PayPal, and bank transfers.": "We accept credit cards, PayPal, and bank transfers."
+    "We accept credit cards, PayPal, and bank transfers.": "We accept credit cards, PayPal, and bank transfers.",
+    "Your transfer" : "Your transfer",
+    "PASSENGERS" : "PASSENGERS",
+    "PASSENGER": "PASSENGER"
+
 }

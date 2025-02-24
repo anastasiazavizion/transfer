@@ -1,7 +1,19 @@
 <script setup>
-
 import {computed, onMounted, ref} from "vue";
 import {useStore} from "vuex";
+import DateText from "../Components/DateText.vue";
+import TimeText from "../Components/TimeText.vue";
+import SvgCalendar from "../Components/SvgCalendar.vue";
+import SvgTime from "../Components/SvgTime.vue";
+import SvgPeople from "../Components/SvgPeople.vue";
+import SvgRoad from "../Components/SvgRoad.vue";
+import SvgDuration from "../Components/SvgDuration.vue";
+import SidebarRow from "../Components/SidebarRow.vue";
+import SquareFigure from "../Components/SquareFigure.vue";
+import {useI18n} from "vue-i18n";
+const { t } = useI18n();
+import CustomContentLoader from "../Components/CustomContentLoader.vue";
+import SidebarHeader from "../Components/SidebarHeader.vue";
 
 const store = useStore();
 
@@ -14,6 +26,8 @@ const distance1 = ref("");
 const distance3 = ref("");
 const duration = ref("");
 const total = ref(0);
+
+const isLoading = ref(true);
 
 function initMap(coordinates) {
   let sumLat = 0;
@@ -29,7 +43,7 @@ function initMap(coordinates) {
 
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5,
-    center: { lat: centerLat, lng: centerLng},
+    center: {lat: centerLat, lng: centerLng},
     mapTypeId: "terrain",
     styles: [
       {
@@ -123,12 +137,12 @@ function initMap(coordinates) {
 
   path.setMap(map);
 
-  console.log(data.value);
-
-
   const markers = [
-    { position: { lat: coordinates[0]['lat'], lng: coordinates[0]['lng'] }, label: data.value.city_from },
-    { position: { lat: coordinates[coordinates.length-1]['lat'], lng: coordinates[coordinates.length-1]['lng']}, label: data.value.city_to }
+    {position: {lat: coordinates[0]['lat'], lng: coordinates[0]['lng']}, label: data.value.city_from},
+    {
+      position: {lat: coordinates[coordinates.length - 1]['lat'], lng: coordinates[coordinates.length - 1]['lng']},
+      label: data.value.city_to
+    }
   ];
 
   markers.forEach(markerData => {
@@ -141,10 +155,15 @@ function initMap(coordinates) {
   });
 }
 
+
+const passengersText = computed(()=>{
+    return data.adults > 1 ? t('PASSENGER') : t('PASSENGER');
+})
+
 onMounted(async () => {
 
   if (Object.keys(data.value).length > 0) {
-    const response =  await axios.get('/api/distanceDuration', {params:data.value});
+    const response = await axios.get('/api/distanceDuration', {params: data.value});
     if (response.data) {
       distance.value = response.data.distance;
       distance1.value = response.data.distance1;
@@ -153,52 +172,136 @@ onMounted(async () => {
       total.value = response.data.total;
     }
 
-    const responseCoordinates =  await axios.get('/api/coordinates', {params:data.value});
+    const responseCoordinates = await axios.get('/api/coordinates', {params: data.value});
     if (responseCoordinates.data) {
       initMap(responseCoordinates.data.coordinates);
+      isLoading.value = false;
     }
   }
 
 })
-
 </script>
 
 <template>
-  <div class="row text-white">
 
-    <div class="col-md-12 col-lg-12 d-flex justify-content-center">
-      <div id="map"></div>
-    </div>
+  <div class="container c-main-container">
+    <div class="row">
+      <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
 
-    <div v-if="distance" class="col-md-12 col-lg-12">
-      <div>Distance = {{distance}}</div>
-    </div>
+       <CustomContentLoader v-if="isLoading"/>
 
+        <div v-if="!isLoading" class="sidebar-new sidebar-white">
+          <SidebarHeader class="text-black">{{$t('Your transfer')}}</SidebarHeader>
+          <hr>
 
-    <div v-if="distance1" class="col-md-12 col-lg-12">
-      <div>From HA to A = {{distance1}}</div>
-    </div>
+         <SidebarRow>
+             <SquareFigure/>
+             <div class="route_line">-</div>
+             <div class="route_line_fix">-</div>
+             <template #second>
+                 <strong>{{data.address_from}}</strong>
+             </template>
+         </SidebarRow>
 
+         <SidebarRow>
+             <SquareFigure/>
+             <template #second>
+                 <strong>{{data.address_to}}</strong>
+             </template>
+         </SidebarRow>
 
-    <div v-if="distance3" class="col-md-12 col-lg-12">
-      <div>From B to HA = {{distance3}}</div>
-    </div>
+         <SidebarRow>
+            <SvgCalendar/>
+             <template #second>
+                 <DateText :date="data.meeting_date"/>
+             </template>
+         </SidebarRow>
 
-    <div v-if="duration" class="col-md-12 col-lg-12">
-      <div>Duration = {{duration}}</div>
-    </div>
+          <SidebarRow>
+              <SvgTime/>
+              <template #second>
+                  <TimeText :time="data.meeting_time"/>
+              </template>
+          </SidebarRow>
 
+          <hr>
 
-    <div v-if="total" class="col-md-12 col-lg-12">
-      <div>Total = {{total}}</div>
+        <SidebarRow>
+            <SvgPeople/>
+            <template #second>
+                {{data.adults}} {{passengersText}}
+            </template>
+        </SidebarRow>
+
+        <SidebarRow>
+            <SvgRoad/>
+            <template #second>
+                {{distance}}
+            </template>
+        </SidebarRow>
+
+         <SidebarRow>
+             <SvgDuration/>
+             <template #second>
+                 {{duration}}
+             </template>
+         </SidebarRow>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-7 col-lg-8">
+        <div id="map"></div>
+      </div>
     </div>
 
   </div>
+
+
 </template>
 
 <style scoped>
-#map{
+#map {
   height: 600px;
-  width: 600px;
+  width: 100%;
 }
+
+.route_line{
+    border-left: 2px solid #212121;
+    margin-top: 1px;
+    color: #fff;
+    margin-left: 4.5px;
+    height: 0%; /* Start at 0% height */
+    -webkit-animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
+    -moz-animation: increase 4s infinite forwards;
+    -o-animation: increase 4s infinite forwards;
+    animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
+    z-index: 9;
+}
+
+.route_line_fix {
+    margin-top: 1px;
+    color: #fff;
+    margin-left: 14px;
+    position: absolute;
+    z-index: 1;
+    height: 80px; /* Full height */
+    opacity: 0; /* Start as hidden */
+    transition: opacity 1s ease; /* Transition to fade in after animation */
+}
+
+@keyframes increase {
+    0% {
+        height: 0%;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+.col-1:hover .route_line_fix {
+    opacity: 1; /* Make it visible when hover or after animation */
+}
+
 </style>
