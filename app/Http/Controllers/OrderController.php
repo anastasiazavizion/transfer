@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Notifications\OrderCreatedNotification;
 use App\Repositories\ClientRepository;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
@@ -37,6 +38,11 @@ class OrderController extends Controller
         }
 
         if($client && $order){
+
+
+            $client->notify(new OrderCreatedNotification($order));
+
+
             return response()->json(['message'=>'Success']);
         }
 

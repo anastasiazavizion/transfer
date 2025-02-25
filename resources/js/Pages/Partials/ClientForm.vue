@@ -3,10 +3,15 @@
 import {ref} from "vue";
 import PrimaryButton from "../../Components/PrimaryButton.vue";
 import {useStore} from "vuex";
+import {useRouter} from "vue-router";
+import {data} from "autoprefixer";
+const router = useRouter()
+
 const store = useStore();
 
 const props = defineProps({
     total:Number,
+    car_id:Number,
     data:Object,
     distance:String,
     duration:String,
@@ -14,7 +19,6 @@ const props = defineProps({
     km_to_location_2:String,
     km_to_location_3:String,
 })
-
 
 const clientForm = ref({
     name:'',
@@ -26,19 +30,13 @@ const clientForm = ref({
 });
 
 function saveOrder(){
-
-    console.log('saveOrder 1');
-
-
-
-    store.dispatch('saveOrder', {
+    const payload = {
         ...clientForm.value,
         ...props
-    })
-
+    };
+    store.dispatch('saveOrder', payload)
+    router.push({name:'success'});
 }
-
-
 
 </script>
 
@@ -71,7 +69,7 @@ function saveOrder(){
 
               <div class="mb-2">
                   <label for="comment" class="form-label">{{$t('Comment')}}:</label>
-                  <input v-model="clientForm.comment" placeholder="" type="text" name="comment" id="comment" class="form-control">
+                  <textarea v-model="clientForm.comment" placeholder="" type="text" name="comment" id="comment" class="form-control"></textarea>
               </div>
 
               <div class="mb-2">

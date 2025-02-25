@@ -47,5 +47,9 @@
     "Comment" : "Comment",
     "Preferred messenger" : "Preferred messenger",
     "Email": "Email",
-    "Submit" : "Submit"
+    "Submit" : "Submit",
+    "Hello": "Hello",
+    "You have a new order, total is" : "You have a new order, total is",
+    "Thanks" : "Thanks"
+
 }

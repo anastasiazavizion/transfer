@@ -52,18 +52,12 @@ export default createStore({
         },
 
         async saveOrder({commit}, data) {
-
             console.log(data);
-            console.log('saveOrder');
-
             try{
                 const response =  await axios.post(route('orders.store'), data);
-
             } catch (error) {
 
                 console.log(error);
-
-
             }
         },
 

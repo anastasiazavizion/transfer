@@ -17,8 +17,11 @@ const props = defineProps({
 })
 
 const showClientForm = ref(false);
+const selectedCar = ref(0);
 
 function selectCar(id){
+    console.log(id);
+    selectedCar.value = id;
     showClientForm.value = true;
 }
 
@@ -70,7 +73,7 @@ function selectCar(id){
     </div>
 
 
-    <ClientForm :distance="distance"
+    <ClientForm :distance="distance" :car_id="selectedCar"
 
                 :km_to_location_1="km_to_location_1" :km_to_location_2="distance" :km_to_location_3="km_to_location_3"
 

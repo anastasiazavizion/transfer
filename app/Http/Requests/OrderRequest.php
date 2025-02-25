@@ -32,6 +32,7 @@ class OrderRequest extends FormRequest
             'km_to_location_1' => 'required',
             'km_to_location_2' => 'required',
             'km_to_location_3' => 'required',
+            'car_id' => 'required|exists:cars,id',
             'duration' => 'required',
             'data' => 'required|array',
             'data.address_from' => 'required|string|max:255',

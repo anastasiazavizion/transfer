@@ -21,6 +21,7 @@ class OrderRepository
                 'children'=>$data['data']['children'],
                 'suitcases'=>$data['data']['suitcases'],
                 'travel_time'=>$data['duration'],
+                'car_id'=>$data['car_id'],
                 'total_price'=>$data['total'],
                 'meeting_date'=>$data['data']['meeting_date'],
                 'meeting_time'=>$data['data']['meeting_time'],
