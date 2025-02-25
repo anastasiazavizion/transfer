@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Observers\OrderObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy([OrderObserver::class])]
 class Order extends Model
 {
+    protected $guarded = [];
 
     public function client() : BelongsTo
     {
@@ -23,5 +27,34 @@ class Order extends Model
     {
         return $this->hasOne(OrderDetail::class);
     }
+
+
+
+    public function setTravelTimeAttribute($value): void
+    {
+
+        $this->attributes['travel_time'] = $this->convertTime($value);
+    }
+    public function setMeetingTimeAttribute($value): void
+    {
+        $this->attributes['meeting_time'] = $this->convertTime($value);
+    }
+
+    public function setMeetingDateAttribute($value): void
+    {
+        $this->attributes['meeting_date'] = $this->convertDate($value);
+    }
+
+    private function convertTime($value)
+    {
+        return date('H:i:s', strtotime($value));
+    }
+
+
+    private function convertDate($value)
+    {
+        return date('Y-m-d', strtotime($value));
+    }
+
 
 }

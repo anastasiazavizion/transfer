@@ -37,6 +37,15 @@
     "We accept credit cards, PayPal, and bank transfers.": "We accept credit cards, PayPal, and bank transfers.",
     "Your transfer" : "Your transfer",
     "PASSENGERS" : "PASSENGERS",
-    "PASSENGER": "PASSENGER"
-
+    "PASSENGER": "PASSENGER",
+    "FREE Cancellation": "FREE Cancellation",
+    "Includes VAT, fees and tip": "Includes VAT, fees and tip",
+    "Select": "Select",
+    "Name": "Name",
+    "Surname": "Surname",
+    "Phone" : "Phone",
+    "Comment" : "Comment",
+    "Preferred messenger" : "Preferred messenger",
+    "Email": "Email",
+    "Submit" : "Submit"
 }

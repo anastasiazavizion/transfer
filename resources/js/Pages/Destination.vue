@@ -10,6 +10,8 @@ import SvgRoad from "../Components/SvgRoad.vue";
 import SvgDuration from "../Components/SvgDuration.vue";
 import SidebarRow from "../Components/SidebarRow.vue";
 import SquareFigure from "../Components/SquareFigure.vue";
+import CarsDiv from "./Partials/Cars.vue";
+
 import {useI18n} from "vue-i18n";
 const { t } = useI18n();
 import CustomContentLoader from "../Components/CustomContentLoader.vue";
@@ -160,11 +162,19 @@ const passengersText = computed(()=>{
     return data.adults > 1 ? t('PASSENGER') : t('PASSENGER');
 })
 
+const cars = computed(() => {
+    return store.getters['getCars'];
+})
+
+
 onMounted(async () => {
 
   if (Object.keys(data.value).length > 0) {
     const response = await axios.get('/api/distanceDuration', {params: data.value});
-    if (response.data) {
+
+    await store.dispatch('getCars');
+
+      if (response.data) {
       distance.value = response.data.distance;
       distance1.value = response.data.distance1;
       distance3.value = response.data.distance3;
@@ -177,6 +187,10 @@ onMounted(async () => {
       initMap(responseCoordinates.data.coordinates);
       isLoading.value = false;
     }
+
+
+
+
   }
 
 })
@@ -253,6 +267,15 @@ onMounted(async () => {
 
       <div class="col-md-7 col-lg-8">
         <div id="map"></div>
+
+          <div class="row">
+              <div class="col">
+                  <CarsDiv v-if="!isLoading"
+                           :km_to_location_1="distance1" :km_to_location_2="distance" :km_to_location_3="distance3"
+                           :total="total" :data="data"  :cars="cars" :distance="distance" :duration="duration"></CarsDiv>
+              </div>
+          </div>
+
       </div>
     </div>
 

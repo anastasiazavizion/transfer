@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Client extends Model
 {
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'preferred_messenger_id'];
+
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);

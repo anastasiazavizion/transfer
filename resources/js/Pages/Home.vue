@@ -7,6 +7,7 @@ import {useRouter} from "vue-router";
 const router = useRouter();
 import { useStore } from 'vuex';
 import SidebarHeader from "../Components/SidebarHeader.vue";
+import PrimaryButton from "../Components/PrimaryButton.vue";
 const store = useStore();
 
 const form = ref({
@@ -135,14 +136,13 @@ async function calculate() {
                             </div>
                         </div>
 
-
                         <div class="mb-2 mt-4 form-check">
                             <input v-model="form.addRoadBack" type="checkbox" class="form-check-input" id="addRoadBack">
                             <label class="form-check-label" for="addRoadBack">{{$t('Add Return')}}</label>
                             <Errors :errors="calculateFormErrors.addRoadBack"/>
                         </div>
 
-                        <button class="btn btn-success w-100">{{$t('CALCULATE')}}</button>
+                        <PrimaryButton>{{$t('CALCULATE')}}</PrimaryButton>
 
                     </form>
                 </div>
