@@ -13,11 +13,15 @@ export default createStore({
             suitcases: 0,
             addRoadBack: false,
         },
-        calculateFormErrors:[]
+        calculateFormErrors:[],
+        cars:[]
     },
     mutations: {
         setFormData(state, formData) {
             state.formData = { ...formData }; // Set form data to the store
+        },
+        setCars(state, data) {
+            state.cars = data;
         },
         setCalculateFormErrors(state, data) {
             state.calculateFormErrors = data;
@@ -37,6 +41,28 @@ export default createStore({
             }
         },
 
+        async getCars({commit}, formData) {
+            commit('setCars', []);
+            try {
+                const response =  await axios.get(route('cars'));
+                commit('setCars', response.data);
+            } catch (error) {
+                commit('setCars', []);
+            }
+        },
+
+        async saveOrder({commit}, data) {
+            console.log(data);
+            try{
+                const response =  await axios.post(route('orders.store'), data);
+            } catch (error) {
+
+                console.log(error);
+            }
+        },
+
+
+
         async updateFormData({commit}, formData) {
             commit('setFormData', formData);
         },
@@ -46,6 +72,7 @@ export default createStore({
     },
     getters: {
         getFormData: (state) => state.formData,
+        getCars: (state) => state.cars,
         getCalculateFormErrors: (state) => state.calculateFormErrors,
     },
 

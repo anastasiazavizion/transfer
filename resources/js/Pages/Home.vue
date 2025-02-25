@@ -6,11 +6,15 @@ import Errors from "../Components/Errors.vue";
 import {useRouter} from "vue-router";
 const router = useRouter();
 import { useStore } from 'vuex';
+import SidebarHeader from "../Components/SidebarHeader.vue";
+import PrimaryButton from "../Components/PrimaryButton.vue";
 const store = useStore();
 
 const form = ref({
         address_from: '',
         address_to: '',
+        city_from: '',
+        city_to: '',
         meeting_date: '',
         meeting_time: '',
         adults: 1,
@@ -57,7 +61,8 @@ async function calculate() {
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column">
                 <div class="sidebar-new">
-                    <h2 class="mb-4 sidebar-header">{{$t('GET INSTANT PRICE CALCULATION')}}</h2>
+                    <SidebarHeader>{{$t('GET INSTANT PRICE CALCULATION')}}</SidebarHeader>
+
                     <form @submit.prevent="calculate">
                         <div class="mb-2">
                             <label for="location1" class="form-label">{{$t('From')}}:</label>
@@ -102,27 +107,30 @@ async function calculate() {
                                     <Errors :errors="calculateFormErrors.adults"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-                                    <label for="children" class="form-label">{{$t('Children')}}</label>
+<!--                                    <label for="children" class="form-label">{{$t('Children')}}</label>
                                     <select v-model="form.children" name="children" class="form-select" id="children">
                                         <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
                                     </select>
-                                    <Errors :errors="calculateFormErrors.children"/>
+                                    <Errors :errors="calculateFormErrors.children"/>-->
+
+
+                                    <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
+                                    <select v-model="form.suitcases" class="form-select" id="bags">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                    <Errors :errors="calculateFormErrors.suitcases"/>
+
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="mb-2">
-                            <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
-                            <select v-model="form.suitcases" class="form-select" id="bags">
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <Errors :errors="calculateFormErrors.suitcases"/>
                         </div>
 
                         <div class="mb-2 mt-4 form-check">
@@ -131,7 +139,7 @@ async function calculate() {
                             <Errors :errors="calculateFormErrors.addRoadBack"/>
                         </div>
 
-                        <button class="btn btn-success w-100">{{$t('CALCULATE')}}</button>
+                        <PrimaryButton>{{$t('CALCULATE')}}</PrimaryButton>
 
                     </form>
                 </div>

@@ -24,11 +24,13 @@ class CalculateFormRequest extends FormRequest
         return [
             'address_from'=>'required|string',
             'address_to'=>'required|string',
+            'city_from'=>'required|string',
+            'city_to'=>'required|string',
             'children'=>'required|integer|min:0|max:3',
             'adults'=>'required|integer|min:1|max:4',
             'meeting_date'=>'required|date|after:today',
             'meeting_time'=>'required|date_format:H:i',
-            'suitcases'=>'required|integer|min:0|max:3',
+            'suitcases'=>'required|integer|min:0|max:6',
             'addRoadBack'=>'required|boolean',
         ];
     }

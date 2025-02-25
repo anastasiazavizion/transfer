@@ -14,7 +14,7 @@
     "Privacy Policy": "Політика конфіденційності",
     "Terms & Conditions" : "Умови та положення",
     "GET INSTANT PRICE CALCULATION": "ОТРИМАЙТЕ МОМЕНТАЛЬНИЙ РОЗРАХУНОК ЦІНИ",
-    "From" : "Від",
+    "From" : "З",
     "To": "До",
     "Departure Date": "Дата відправлення",
     "Departure Time": "Час відправлення",
@@ -34,5 +34,6 @@
     "Can I cancel my booking?": "Чи можу я скасувати своє бронювання?",
     "Yes, you can cancel your booking before the departure date.": "Так, ви можете скасувати своє бронювання до дати відправлення.",
     "What payment methods are accepted?" : "Які методи оплати приймаються?",
-    "We accept credit cards, PayPal, and bank transfers.": "Ми приймаємо кредитні картки, PayPal та банківські перекази."
+    "We accept credit cards, PayPal, and bank transfers.": "Ми приймаємо кредитні картки, PayPal та банківські перекази.",
+    "Your transfer" : "Ваша поіздка"
 }

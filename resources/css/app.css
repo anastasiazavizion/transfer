@@ -35,6 +35,13 @@ body * {
     position: relative;
     z-index: 2;
 }
+
+.c-main-container .sidebar-white {
+    background-color: #ffffff;
+    color: #000!important;
+}
+
+
 .navbar.navbar-expand-lg {
     background-color: rgba(0,0,0,0.7)!important;
     color: #fff!important;
@@ -320,6 +327,51 @@ h2.sidebar-header {
 .locale-div svg{
     cursor: pointer;
     margin-right: 10px;
+}
+
+.svg-default{
+    height: 25px;
+}
+.svg-light{
+    color: #868686
+}
+
+.borderess {
+    border-right: 1px dotted #c9c9c9;
+}
+
+.tipomezzo {
+    color: #ccc;
+    line-height: 19px;
+    display: block;
+}
+
+.titolomezzo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.prezzocol {
+    text-align: right;
+}
+
+.prezzo-a-totale {
+    font-size: 38px;
+    color: #3c3c3c;
+    text-align: right;
+    font-weight: 400;
+}
+
+.div-rounded{
+    border-radius: 12px;
+}
+
+.car-row{
+    padding: 35px 30px 30px 30px;
+}
+
+.div-padding{
+    padding: 35px 30px 30px 30px;
 }
 
 @media (max-width: 480px) {
