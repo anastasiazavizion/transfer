@@ -4,7 +4,6 @@ import {ref} from "vue";
 import PrimaryButton from "../../Components/PrimaryButton.vue";
 import {useStore} from "vuex";
 import {useRouter} from "vue-router";
-import {data} from "autoprefixer";
 const router = useRouter()
 
 const store = useStore();
@@ -29,13 +28,19 @@ const clientForm = ref({
     preferred_messenger_id : 0
 });
 
-function saveOrder(){
+async function saveOrder() {
     const payload = {
         ...clientForm.value,
         ...props
     };
-    store.dispatch('saveOrder', payload)
-    router.push({name:'success'});
+    await store.dispatch('saveOrder', payload)
+
+    const orderId = store.getters['getNewOrderId'];
+    console.log(orderId);
+    if (orderId) {
+        await router.push({name: 'success', params: {orderId: orderId}});
+    }
+
 }
 
 </script>

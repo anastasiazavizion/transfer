@@ -24,7 +24,7 @@ const routes = [
     },
 
     {
-        path: '/success',
+        path: '/success/:orderId',
         name:"success",
         component: Success,
         meta: {

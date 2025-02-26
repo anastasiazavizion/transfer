@@ -14,14 +14,22 @@ export default createStore({
             addRoadBack: false,
         },
         calculateFormErrors:[],
-        cars:[]
+        cars:[],
+        newOrderId : null,
+        order : null
     },
     mutations: {
         setFormData(state, formData) {
             state.formData = { ...formData }; // Set form data to the store
         },
+        setOrder(state, data) {
+            state.order = data;
+        },
         setCars(state, data) {
             state.cars = data;
+        },
+        setNewOrderId(state, data) {
+            state.newOrderId = data;
         },
         setCalculateFormErrors(state, data) {
             state.calculateFormErrors = data;
@@ -41,7 +49,7 @@ export default createStore({
             }
         },
 
-        async getCars({commit}, formData) {
+        async getCars({commit}) {
             commit('setCars', []);
             try {
                 const response =  await axios.get(route('cars'));
@@ -51,12 +59,24 @@ export default createStore({
             }
         },
 
+        async getOrder({commit}, id) {
+            try {
+                const response = await axios.get(route('orders.show', { order: id }));
+                commit('setOrder', response.data.order);
+            } catch (error) {
+                console.log(error);
+                commit('setOrder', null);
+            }
+        },
+
+
         async saveOrder({commit}, data) {
             console.log(data);
             try{
                 const response =  await axios.post(route('orders.store'), data);
+                commit('setNewOrderId', response.data.id);
             } catch (error) {
-
+                commit('setNewOrderId', null);
                 console.log(error);
             }
         },
@@ -72,7 +92,9 @@ export default createStore({
     },
     getters: {
         getFormData: (state) => state.formData,
+        getNewOrderId: (state) => state.newOrderId,
         getCars: (state) => state.cars,
+        getOrder: (state) => state.order,
         getCalculateFormErrors: (state) => state.calculateFormErrors,
     },
 

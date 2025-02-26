@@ -26,12 +26,8 @@ const form = ref({
 onMounted(() => {
     initializeAutocomplete("address_from", form);
     initializeAutocomplete("address_to", form);
-
-    store.dispatch('updateFormData', {});
     store.dispatch('updateCalculateFormErrors', {});
-
 });
-
 
 
 const tomorrowDate = computed(()=>{
@@ -57,6 +53,22 @@ async function calculate() {
 </script>
 
 <template>
+
+    <div class="main-header-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 p-4 text-center main-cm-header-holder">
+                    <div class="mah-parent">
+                        <h1 class="main-cm-header">{{$t('Your comfy transfer from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.</h1>
+                        <div class="mah-phones">
+                            <a href="tel:+34 643 598 874">+34 643 598 874</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container c-main-container">
         <div class="row">
             <div class="col-md-5 col-lg-4 sidebar d-flex flex-column">
