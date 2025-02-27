@@ -13,36 +13,44 @@ class Order extends Model
 {
     protected $guarded = [];
 
-    public function client() : BelongsTo
+    public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function status() : BelongsTo
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
 
-    public function details() : HasOne
+    public function details(): HasOne
     {
         return $this->hasOne(OrderDetail::class);
     }
 
-
-
     public function setTravelTimeAttribute($value): void
     {
-
         $this->attributes['travel_time'] = $this->convertTime($value);
     }
+
     public function setMeetingTimeAttribute($value): void
     {
         $this->attributes['meeting_time'] = $this->convertTime($value);
     }
 
+    public function getMeetingTimeAttribute($value): string
+    {
+       return $this->convertTimeToHI($value);
+    }
+
     public function setMeetingDateAttribute($value): void
     {
         $this->attributes['meeting_date'] = $this->convertDate($value);
+    }
+
+    public function getMeetingDateAttribute($value): string
+    {
+       return $this->convertDateToDDMMYYYY($value);
     }
 
     private function convertTime($value)
@@ -56,5 +64,15 @@ class Order extends Model
         return date('Y-m-d', strtotime($value));
     }
 
+    private function convertDateToDDMMYYYY($value)
+    {
+        return date('d.m.Y', strtotime($value));
+
+    }
+
+    private function convertTimeToHI($value)
+    {
+        return date('H:i', strtotime($value));
+    }
 
 }

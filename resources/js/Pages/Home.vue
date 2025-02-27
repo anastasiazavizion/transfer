@@ -8,6 +8,7 @@ const router = useRouter();
 import { useStore } from 'vuex';
 import SidebarHeader from "../Components/SidebarHeader.vue";
 import PrimaryButton from "../Components/PrimaryButton.vue";
+import MainPhone from "../Components/MainPhone.vue";
 const store = useStore();
 
 const form = ref({
@@ -50,10 +51,10 @@ async function calculate() {
         await router.push({name: 'destination'});
     }
 }
+
 </script>
 
 <template>
-
     <div class="main-header-container">
         <div class="container">
             <div class="row">
@@ -61,7 +62,7 @@ async function calculate() {
                     <div class="mah-parent">
                         <h1 class="main-cm-header">{{$t('Your comfy transfer from any place in Europe to Spain')}} 🇪🇸 {{$t('or Portugal')}} 🇵🇹 {{$t('and vice versa')}}.</h1>
                         <div class="mah-phones">
-                            <a href="tel:+34 643 598 874">+34 643 598 874</a>
+                            <main-phone/>
                         </div>
                     </div>
                 </div>
@@ -103,7 +104,6 @@ async function calculate() {
                                     <Errors :errors="calculateFormErrors.meeting_time"/>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="mb-2">
@@ -119,16 +119,6 @@ async function calculate() {
                                     <Errors :errors="calculateFormErrors.adults"/>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
-<!--                                    <label for="children" class="form-label">{{$t('Children')}}</label>
-                                    <select v-model="form.children" name="children" class="form-select" id="children">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <Errors :errors="calculateFormErrors.children"/>-->
-
-
                                     <label for="bags" class="form-label">{{$t('Bags/Suitcases')}}</label>
                                     <select v-model="form.suitcases" class="form-select" id="bags">
                                         <option>0</option>
@@ -140,7 +130,6 @@ async function calculate() {
                                         <option>6</option>
                                     </select>
                                     <Errors :errors="calculateFormErrors.suitcases"/>
-
                                 </div>
                             </div>
                         </div>
@@ -150,42 +139,31 @@ async function calculate() {
                             <label class="form-check-label" for="addRoadBack">{{$t('Add Return')}}</label>
                             <Errors :errors="calculateFormErrors.addRoadBack"/>
                         </div>
-
                         <PrimaryButton>{{$t('CALCULATE')}}</PrimaryButton>
-
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-
 
     <div class="cs-white">
         <div class="container c-secondary-container">
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="main-attractive-points">
-
                             <h2 class="wcu-header">
                                 {{$t('Why Choose Us')}}
                             </h2>
-
                         <FAQ/>
-
                         <h2>{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>
                     </div>
-
                     <div class="how-it-works">
                         <h2 class="hiw-header">
                             {{$t('How it Works')}}
                         </h2>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
     </div>
 

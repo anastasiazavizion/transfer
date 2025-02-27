@@ -6,6 +6,7 @@ use App\Http\Controllers\ValidateController;
 use App\Http\Controllers\GoogleMapsController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MessengerController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,5 +20,4 @@ Route::get('/coordinates', [GoogleMapsController::class, 'coordinates'])->name('
 Route::get('/cars', [CarController::class, 'index'])->name('cars');
 
 Route::apiResource('orders', OrderController::class);
-
-
+Route::apiResource('messengers', MessengerController::class)->only(['index']);

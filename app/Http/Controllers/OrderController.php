@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Notifications\OrderCreatedNotification;
 use App\Repositories\ClientRepository;
@@ -39,10 +40,12 @@ class OrderController extends Controller
         }
 
         if($client && $order){
+
             $client->notify(new OrderCreatedNotification($order));
+
+
             return response()->json(['message'=>'Success', 'id'=>$order->id]);
         }
-
         return response()->json(['message'=>'Error'], 500);
     }
 
@@ -52,8 +55,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $order->load(['client']);
-
-        return response()->json(['order'=>$order]);
+        return new OrderResource($order);
     }
 
     /**

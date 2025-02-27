@@ -26,7 +26,6 @@ onMounted(async () => {
                 <div v-if="order">
                     <h2>{{ $t('Congratulations') }}, <strong>{{ order.client.first_name }} {{ order.client.last_name }}</strong>!</h2>
                     <p>{{ $t('You have a new order, total is', {order_number:order.id}) }} <strong>{{ order.total_price }} €</strong></p>
-
                     <p><strong>{{ $t('From') }}:</strong> {{ order.address_from }}</p>
                     <p><strong>{{ $t('To') }}:</strong> {{ order.address_to }}</p>
                     <p><strong>{{ $t('Departure Date') }}:</strong> {{ order.meeting_date }}</p>

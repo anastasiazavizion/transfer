@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/Pages/Home.vue";
 import Destination from "@/Pages/Destination.vue";
-import Contact from "@/Pages/Contact.vue";
 import Success from "@/Pages/Success.vue";
 
 const routes = [
@@ -27,15 +26,6 @@ const routes = [
         path: '/success/:orderId',
         name:"success",
         component: Success,
-        meta: {
-            middleware: ["guest"],
-        },
-    },
-
-    {
-        path: '/contact',
-        name:"contact",
-        component: Contact,
         meta: {
             middleware: ["guest"],
         },

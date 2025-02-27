@@ -49,7 +49,8 @@
     "Email": "Email",
     "Submit" : "Submit",
     "Hello": "Hello",
-    "You have a new order, total is" : "You have a new order #{order_number}, total is",
+    "You have a new order, total is ": "You have a new order #:order_number, total is",
+    "You have a new order, total is": "You have a new order #{order_number}, total is",
     "Thanks" : "Thanks",
     "Why Choose Us" : "Why Choose Us",
     "How it Works" : "How it Works",
@@ -59,7 +60,10 @@
     "We accept payment in USDT, please note that the price in USDT will be +10%, means 1000 euros = 1100 USDT (based on currency exchange difference).": "We accept payment in USDT, please note that the price in USDT will be +10%, means 1000 euros = 1100 USDT (based on currency exchange difference).",
     "Want to pay with crypto (USDT)?" : "Want to pay with crypto (USDT)?",
     "Congratulations": "Congratulations",
+    "Standart": "Standart",
+    "Total one-way price" : "Total one-way price",
+    "Up to" : "Up to",
+    "medium suitcases" : "medium suitcases",
+    "Passengers" : "Passengers",
     "This is a unique proposal from us compared to other competitors. You just need to give us the desired route from google maps to manager and we calculate the price immediately.": "This is a unique proposal from us compared to other competitors. You just need to give us the desired route from google maps to manager and we calculate the price immediately."
-
-
 }

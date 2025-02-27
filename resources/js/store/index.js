@@ -14,9 +14,11 @@ export default createStore({
             addRoadBack: false,
         },
         calculateFormErrors:[],
+        clientFormErrors:[],
         cars:[],
         newOrderId : null,
-        order : null
+        order : null,
+        messengers: []
     },
     mutations: {
         setFormData(state, formData) {
@@ -28,11 +30,17 @@ export default createStore({
         setCars(state, data) {
             state.cars = data;
         },
+        setMessengers(state, data) {
+            state.messengers = data;
+        },
         setNewOrderId(state, data) {
             state.newOrderId = data;
         },
         setCalculateFormErrors(state, data) {
             state.calculateFormErrors = data;
+        },
+        setClientFormErrors(state, data) {
+            state.clientFormErrors = data;
         },
     },
     actions: {
@@ -50,7 +58,6 @@ export default createStore({
         },
 
         async getCars({commit}) {
-            commit('setCars', []);
             try {
                 const response =  await axios.get(route('cars'));
                 commit('setCars', response.data);
@@ -59,28 +66,39 @@ export default createStore({
             }
         },
 
+        async getMessengers({commit}) {
+            try {
+                const response =  await axios.get(route('messengers.index'));
+                commit('setMessengers', response.data);
+            } catch (error) {
+                commit('setMessengers', []);
+            }
+        },
+
+
         async getOrder({commit}, id) {
             try {
                 const response = await axios.get(route('orders.show', { order: id }));
-                commit('setOrder', response.data.order);
+                commit('setOrder', response.data);
             } catch (error) {
-                console.log(error);
                 commit('setOrder', null);
             }
         },
 
-
         async saveOrder({commit}, data) {
-            console.log(data);
+            commit('setClientFormErrors',[]);
             try{
                 const response =  await axios.post(route('orders.store'), data);
                 commit('setNewOrderId', response.data.id);
             } catch (error) {
+                if (error.response.status === 422) {
+                    commit('setClientFormErrors', error.response.data.errors);
+                } else {
+                    commit('setClientFormErrors', [{'other': 'Some other errors'}]);
+                }
                 commit('setNewOrderId', null);
-                console.log(error);
             }
         },
-
 
 
         async updateFormData({commit}, formData) {
@@ -95,6 +113,8 @@ export default createStore({
         getNewOrderId: (state) => state.newOrderId,
         getCars: (state) => state.cars,
         getOrder: (state) => state.order,
+        getMessengers: (state) => state.messengers,
+        getClientFormErrors: (state) => state.clientFormErrors,
         getCalculateFormErrors: (state) => state.calculateFormErrors,
     },
 

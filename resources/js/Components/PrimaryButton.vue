@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <button class="btn btn-success w-100"><slot/></button>
+    <button class="primary-btn w-100"><slot/></button>
 </template>
 
 <style scoped>

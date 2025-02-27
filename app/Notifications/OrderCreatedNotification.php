@@ -36,7 +36,9 @@ class OrderCreatedNotification extends Notification
      */
     public function toMail(object $notifiable): OrderCreatedMail
     {
-        return (new OrderCreatedMail($this->order))->to($notifiable->email);
+        return (new OrderCreatedMail($this->order))
+            ->to($notifiable->email)
+            ->bcc(env('MAIL_ADMIN_ADDRESS'));
     }
 
     /**
