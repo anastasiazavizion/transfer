@@ -41,4 +41,14 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_admin' => true,
+            'name'=>'konstantin',
+            'email'=>env('MAIL_ADMIN_ADDRESS'),
+            'password'=>Hash::make(env('USER_ADMIN_PASSWORD')),
+        ]);
+    }
 }

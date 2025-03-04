@@ -75,4 +75,10 @@ class Order extends Model
         return date('H:i', strtotime($value));
     }
 
+
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('id', 'desc');
+    }
+
 }

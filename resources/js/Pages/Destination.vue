@@ -16,6 +16,7 @@ import {useI18n} from "vue-i18n";
 const { t } = useI18n();
 import CustomContentLoader from "../Components/CustomContentLoader.vue";
 import SidebarHeader from "../Components/SidebarHeader.vue";
+import MainContainer from "../Layouts/MainContainer.vue";
 
 const store = useStore();
 
@@ -188,100 +189,90 @@ onMounted(async () => {
       isLoading.value = false;
     }
 
-
-
-
   }
 
 })
 </script>
 
 <template>
+    <MainContainer>
+        <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
 
-  <div class="container c-main-container">
-    <div class="row">
-      <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
+            <CustomContentLoader v-if="isLoading"/>
 
-       <CustomContentLoader v-if="isLoading"/>
+            <div v-if="!isLoading" class="sidebar-new sidebar-white">
+                <SidebarHeader class="text-black">{{$t('Your transfer')}}</SidebarHeader>
+                <hr>
 
-        <div v-if="!isLoading" class="sidebar-new sidebar-white">
-          <SidebarHeader class="text-black">{{$t('Your transfer')}}</SidebarHeader>
-          <hr>
+                <SidebarRow>
+                    <SquareFigure/>
+                    <div class="route_line">-</div>
+                    <div class="route_line_fix">-</div>
+                    <template #second>
+                        <strong>{{data.address_from}}</strong>
+                    </template>
+                </SidebarRow>
 
-         <SidebarRow>
-             <SquareFigure/>
-             <div class="route_line">-</div>
-             <div class="route_line_fix">-</div>
-             <template #second>
-                 <strong>{{data.address_from}}</strong>
-             </template>
-         </SidebarRow>
+                <SidebarRow>
+                    <SquareFigure/>
+                    <template #second>
+                        <strong>{{data.address_to}}</strong>
+                    </template>
+                </SidebarRow>
 
-         <SidebarRow>
-             <SquareFigure/>
-             <template #second>
-                 <strong>{{data.address_to}}</strong>
-             </template>
-         </SidebarRow>
+                <SidebarRow>
+                    <SvgCalendar/>
+                    <template #second>
+                        <DateText :date="data.meeting_date"/>
+                    </template>
+                </SidebarRow>
 
-         <SidebarRow>
-            <SvgCalendar/>
-             <template #second>
-                 <DateText :date="data.meeting_date"/>
-             </template>
-         </SidebarRow>
+                <SidebarRow>
+                    <SvgTime/>
+                    <template #second>
+                        <TimeText :time="data.meeting_time"/>
+                    </template>
+                </SidebarRow>
 
-          <SidebarRow>
-              <SvgTime/>
-              <template #second>
-                  <TimeText :time="data.meeting_time"/>
-              </template>
-          </SidebarRow>
+                <hr>
 
-          <hr>
+                <SidebarRow>
+                    <SvgPeople/>
+                    <template #second>
+                        {{data.adults}} {{passengersText}}
+                    </template>
+                </SidebarRow>
 
-        <SidebarRow>
-            <SvgPeople/>
-            <template #second>
-                {{data.adults}} {{passengersText}}
-            </template>
-        </SidebarRow>
+                <SidebarRow>
+                    <SvgRoad/>
+                    <template #second>
+                        {{distance}}
+                    </template>
+                </SidebarRow>
 
-        <SidebarRow>
-            <SvgRoad/>
-            <template #second>
-                {{distance}}
-            </template>
-        </SidebarRow>
+                <SidebarRow>
+                    <SvgDuration/>
+                    <template #second>
+                        {{duration}}
+                    </template>
+                </SidebarRow>
 
-         <SidebarRow>
-             <SvgDuration/>
-             <template #second>
-                 {{duration}}
-             </template>
-         </SidebarRow>
+            </div>
 
         </div>
+        <div class="col-md-7 col-lg-8">
+            <div id="map"></div>
 
-      </div>
+            <div class="row">
+                <div class="col">
+                    <CarsDiv v-if="!isLoading"
+                             :km_to_location_1="distance1" :km_to_location_2="distance" :km_to_location_3="distance3"
+                             :total="total" :data="data"  :cars="cars" :distance="distance" :duration="duration"></CarsDiv>
+                </div>
+            </div>
 
-      <div class="col-md-7 col-lg-8">
-        <div id="map"></div>
-
-          <div class="row">
-              <div class="col">
-                  <CarsDiv v-if="!isLoading"
-                           :km_to_location_1="distance1" :km_to_location_2="distance" :km_to_location_3="distance3"
-                           :total="total" :data="data"  :cars="cars" :distance="distance" :duration="duration"></CarsDiv>
-              </div>
-          </div>
-
-      </div>
-    </div>
-
-  </div>
-
-
+        </div>
+    </MainContainer>
 </template>
 
 <style scoped>

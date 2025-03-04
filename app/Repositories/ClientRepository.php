@@ -27,4 +27,22 @@ class ClientRepository
         }
     }
 
+    public function update(int $id, array $data = []) :Client|false
+    {
+        try {
+            DB::beginTransaction();
+
+            $client = Client::findOrFail($id);
+            $client->update($data);
+
+            DB::commit();
+            return $client;
+
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            logs()->error($exception->getMessage());
+            return false;
+        }
+    }
+
 }

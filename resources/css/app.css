@@ -86,9 +86,7 @@ body * {
 .messenger-img{
     width: 20px;
     height: 20px;
-    cursor: pointer;
 }
-
 
 footer.custom-footer {
     padding-top: 35px!important;
@@ -393,6 +391,36 @@ h2.sidebar-header {
 
 .div-padding{
     padding: 35px 30px 30px 30px;
+}
+
+.order-status{
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.img-link{
+    color: #000000;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.btn-link{
+   color: #ffffff;
+    background-color: rgba(0,0,0,0.7)!important;
+    padding: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.btn-link:hover{
+    color: #ffffff!important;
+}
+
+.select-colored{
+    color: #ffffff!important;
 }
 
 @media (max-width: 480px) {

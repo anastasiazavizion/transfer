@@ -49,5 +49,33 @@ class OrderRepository
         }
     }
 
+    public function update(array $data, Order $order): Order|false
+    {
+        try {
+            DB::beginTransaction();
+
+            $order->update([
+                'address_from'=>$data['address_from'],
+                'address_to'=>$data['address_to'],
+                'adults'=>$data['adults'],
+                'suitcases'=>$data['suitcases'],
+                //'travel_time'=>$data['duration'], //todo
+                'total_price'=>$data['total_price'],
+                'meeting_date'=>$data['meeting_date'],
+                'meeting_time'=>$data['meeting_time'],
+                'status_id'=>$data['status'],
+                'comment'=>$data['comment'],
+            ]);
+
+            DB::commit();
+            return $order;
+
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            logs()->error($exception->getMessage());
+            return false;
+        }
+    }
+
 
 }

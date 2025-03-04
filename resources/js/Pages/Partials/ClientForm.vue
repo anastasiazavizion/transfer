@@ -61,7 +61,7 @@ onMounted(async () => {
 
           <form @submit.prevent="saveOrder">
               <div class="mb-2">
-                  <label for="name" class="form-label">{{$t('Name')}}:</label>
+                  <label for="name" class="form-label">{{ $t('Name')}}:</label>
                   <input v-model="clientForm.name" placeholder="" type="text" name="name" id="name" class="form-control">
                   <Errors :errors="clientFormErrors.name"/>
               </div>

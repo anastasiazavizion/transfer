@@ -1,7 +1,15 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import auth from "./auth.js";
+import admin_orders from "./admin/orders.js";
+import statuses from "./admin/statuses.js";
 
 export default createStore({
+    modules: {
+        auth,
+        statuses,
+        admin_orders,
+    },
     state: {
         formData: {
             address_from: '',

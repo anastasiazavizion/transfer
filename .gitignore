@@ -22,3 +22,8 @@ yarn-error.log
 /.vscode
 /.zed
 .docker-compose.yml
+
+# Ignore the entire storage directory except the storage/app/public folder
+/storage/*
+!/storage/app
+!/storage/app/public
