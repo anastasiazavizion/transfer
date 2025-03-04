@@ -13,7 +13,7 @@ const routes = [
         name:"home",
         component: Home,
         meta: {
-            middleware: ["guest"],
+            middleware: "guest",
         },
     },
 
@@ -22,7 +22,7 @@ const routes = [
         name:"destination",
         component: Destination,
         meta: {
-            middleware: ["guest"],
+            middleware: "guest",
         },
     },
 
@@ -31,7 +31,7 @@ const routes = [
         name:"success",
         component: Success,
         meta: {
-            middleware: ["guest"],
+            middleware: "guest",
         },
     },
 
@@ -49,7 +49,7 @@ const routes = [
         name:"admin.order",
         component: OrderEdit,
         meta: {
-            middleware: ["admin"],
+            middleware: "admin",
         },
     },
 
