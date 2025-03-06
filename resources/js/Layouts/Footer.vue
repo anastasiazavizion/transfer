@@ -1,5 +1,20 @@
 <script setup>
 import Logo from "../Components/Logo.vue";
+import MainPhone from "../Components/MainPhone.vue";
+import {useStore} from "vuex";
+import {computed, onMounted} from "vue";
+
+const store = useStore();
+
+const messengers = computed(() => {
+    return store.getters['getMessengers'];
+})
+
+onMounted(async () => {
+    await store.dispatch('getMessengers');
+})
+
+
 </script>
 
 <template>
@@ -11,8 +26,25 @@ import Logo from "../Components/Logo.vue";
                        <Logo/>
                     </h5>
                 </div>
-                <div class="col-md-4"><a href="#" class="text-light">{{$t('Privacy Policy')}}</a></div>
-                <div class="col-md-4"><a href="#" class="text-light">{{$t('Terms & Conditions')}}</a></div>
+                <div class="col-md-4">
+
+                </div>
+<!--                <div class="col-md-4"><a href="#" class="text-light">{{$t('Privacy Policy')}}</a></div>
+                <div class="col-md-4"><a href="#" class="text-light">{{$t('Terms & Conditions')}}</a></div>-->
+                <div class="col-md-4">
+                    <ul class="navbar-nav">
+                        <li class="nav-item nav-item-questions">{{ $t('Questions') }}?</li>
+                        <li class="nav-item">
+                            <main-phone :show-call-text="true" class="nav-link nav-link-big"/>
+                            <div class="special-text-under-phone d-inline">
+                                {{ $t('available in:') }}
+                                <div class="d-inline-block mr-2" v-for="item in messengers" :key="item.id">{{ item.name }}
+                                    <img :src="item.image" :alt="item.name" :title="item.name"/></div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>

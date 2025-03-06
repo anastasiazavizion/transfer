@@ -16,7 +16,7 @@
 
 
 body {
-    background-color: #fff!important;
+    background-color: #000!important;
     color: #000!important;
 }
 body * {
@@ -122,7 +122,7 @@ footer .col-md-4 {
 }
 .faq-accordion-holder .accordion-item:first-of-type>.accordion-header .accordion-button {
     color: #000!important;
-
+    border-radius: 0!important;
 }
 .faq-accordion-holder .accordion-item {
     box-shadow: 0 0 8px 2px rgb(170 170 170 / 33%);
@@ -130,7 +130,7 @@ footer .col-md-4 {
     border-radius: 0 !important;
 }
 .faq-accordion-holder .accordion-item button {
-    font-size: 27px;
+    font-size: 23px;
     padding-top: 25px;
     padding-bottom: 25px;
 }
@@ -153,7 +153,7 @@ footer .col-md-4 {
     margin-bottom: 100px;
     position: absolute;
     overflow: hidden;
-    min-height: 1080px;
+    min-height: 980px;
     top: 0;
     width: 100%;
     left: 0;
@@ -259,7 +259,6 @@ h2.sidebar-header {
 }
 
 .main-attractive-points {
-    background-color: rgba(255,255,255, 0.9);
     position: relative;
     z-index: 1;
     padding: 30px;
@@ -267,7 +266,9 @@ h2.sidebar-header {
     padding-top: 0px;
 }
 .cs-white {
-    background-color: #fff;
+    background-image: url(http://localhost:5173/storage/app/public/coastal_road.webp);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 .main-attractive-points ul li {
     font-size: 20px;
@@ -299,6 +300,14 @@ h2.sidebar-header {
     font-size: 45px;
     margin-top: 90px;
     margin-bottom: 70px;
+    text-shadow: 2px 2px 4px #000;
+}
+h2.hiw-header {
+    margin-top: 45px;
+    color: #fff;
+}
+.cs-mid-white {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.6),rgba(0,0,0, 0.5));
 }
 .sidebar-new form label.form-label, .sidebar-new form label.form-check-label {
     color: #fff;
@@ -422,7 +431,70 @@ h2.sidebar-header {
 .select-colored{
     color: #ffffff!important;
 }
-
+.how-it-works {
+    padding: 30px;
+    padding-bottom: 150px;
+}
+.shadow.hiw-container{
+    min-height: 208px;
+    padding: 0!important;
+    border-radius: 12px;
+    background-color: #fff;
+}
+.hiw-img {
+    width: 100%;
+    height: auto;
+}
+.hiw-img-parent {
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+.hiw-icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+.hiw-icon i {
+    font-size: 22px;
+    color: #fff;
+    position: relative;
+    left: 3px;
+    bottom: 1px;
+}
+.col-md-3:last-child .hiw-container .hiw-icon {
+    border: 1px solid #000;
+    top: 15px;
+    left: auto;
+    right: 15px;
+}
+.col-md-3:last-child .hiw-container .hiw-icon i {
+    color: #000;
+}
+.hiw-container h5 {
+    font-size: 23px;
+    padding: 15px 15px 0 15px;
+}
+.hiw-container p {
+    font-size: 16px;
+    padding: 0px 15px 15px 15px;
+}
+.faq-under-header {
+    font-size: 23px;
+}
+h2.wcu-header {
+    padding-top: 60px;
+    color: #fff!important;
+}
+.custom-footer .navbar-nav {
+    padding-top: 30px;
+}
 @media (max-width: 480px) {
     .main-header-container .mah-parent {
         position: static;

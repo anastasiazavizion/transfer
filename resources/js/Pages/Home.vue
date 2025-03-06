@@ -12,6 +12,7 @@ import MainPhone from "../Components/MainPhone.vue";
 import MainContainer from "../Layouts/MainContainer.vue";
 import BagsAmount from "../Components/BagsAmount.vue";
 import AdultsAmount from "../Components/AdultsAmount.vue";
+import HowItWorks from "./Partials/HowItWorks.vue";
 const store = useStore();
 
 const form = ref({
@@ -137,24 +138,29 @@ async function calculate() {
         </div>
     </MainContainer>
     <div class="cs-white">
-        <div class="container c-secondary-container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <div class="main-attractive-points">
+        <div class="cs-mid-white">
+            <div class="container c-secondary-container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="main-attractive-points">
                             <h2 class="wcu-header">
                                 {{$t('Why Choose Us')}}
                             </h2>
-                        <FAQ/>
-                        <h2>{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>
-                    </div>
-                    <div class="how-it-works">
-                        <h2 class="hiw-header">
-                            {{$t('How it Works')}}
-                        </h2>
+                            <FAQ/>
+                            <br>
+<!--                            <h2 class="faq-under-header">{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>-->
+                        </div>
+                        <div class="how-it-works">
+                            <h2 class="hiw-header">
+                                {{$t('How it Works')}}
+                            </h2>
+                            <HowItWorks/>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
 </template>
