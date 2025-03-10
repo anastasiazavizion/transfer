@@ -54,7 +54,7 @@ body * {
 
 .primary-btn{
     background-color: #000;
-    border-color: #000;
+    border: 2px solid #000;
     color: #ffffff;
     margin-top: 10px;
     margin-bottom: 15px;
@@ -63,6 +63,7 @@ body * {
     padding: 0;
     font-size: 25px;
     text-transform: uppercase;
+    border-radius: 5px;
 }
 
 .primary-btn:not(.selected-primary-btn):hover{
@@ -135,15 +136,18 @@ footer .col-md-4 {
     padding-bottom: 25px;
 }
 .faq-accordion-holder .accordion-item button img {
-    margin-right: 10px;
-    max-width: 65px;
+    margin-right: 25px;
+    width: 165px;
+    box-shadow: 2px 2px 1px black;
+    height: 100px;
 }
 .faq-accordion-holder .accordion-body {
     font-size: 20px;
+    padding: 25px 20px;
 }
 .faq-accordion-holder .accordion-item:last-child button img {
-    margin-left: 15px;
-    margin-right: 30px;
+/*    margin-left: 15px;
+    margin-right: 30px;*/
 }
 .home-vid-back-container{
     justify-content: center;
@@ -180,10 +184,9 @@ footer .col-md-4 {
     justify-content: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: rgba(106, 194, 89, 0.7);
-    border-top: 5px solid #fff;
-    border-bottom: 5px solid #fff;
-    color: #ffffff;
+    background-color: #fff;
+    border-top: 2px solid rgba(106, 194, 89, 0.7) !important;
+    border-bottom: 2px solid rgba(106, 194, 89, 0.7) !important;
 }
 .under-nav .col-lg-4 {
     display: flex;
@@ -191,16 +194,15 @@ footer .col-md-4 {
     align-items: center;
 }
 .un-icon {
-    max-height: 50px;
-    box-shadow: 2px 2px 4px black;
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 3px;
+    max-height: 75px;
+    box-shadow: 2px 2px 1px black;
+    border-radius: 0px;
 }
 .un-point {
+    color: #000;
     padding-left: 15px;
     font-size: 14px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);*/
 }
 .navbar-nav .nav-item img {
     max-width: 15px;
@@ -270,6 +272,15 @@ h2.sidebar-header {
     background-repeat: no-repeat;
     background-size: 100%;
 }
+.cs-white.cs-white-d {
+    background-size: cover;
+}
+.cs-white.cs-white-d .main-attractive-points h2.wcu-header{
+    margin-top: 0!important;
+}
+.pd-0-25 {
+    padding: 0 25px!important;
+}
 .main-attractive-points ul li {
     font-size: 20px;
     margin-top: 20px;
@@ -308,6 +319,7 @@ h2.hiw-header {
 }
 .cs-mid-white {
     background-image: linear-gradient(180deg, rgba(0,0,0, 0.6),rgba(0,0,0, 0.5));
+    height: 100%;
 }
 .sidebar-new form label.form-label, .sidebar-new form label.form-check-label {
     color: #fff;
@@ -368,10 +380,13 @@ h2.hiw-header {
     border-right: 1px dotted #c9c9c9;
 }
 
-.tipomezzo {
-    color: #ccc;
-    line-height: 19px;
+.car-name-title {
+    color: #000;
+    font-size: 14px;
+    text-transform: uppercase;
     display: block;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .titolomezzo {
@@ -494,6 +509,74 @@ h2.wcu-header {
 }
 .custom-footer .navbar-nav {
     padding-top: 30px;
+}
+.col-md-12.cm-spacer {
+    height: 48px;
+}
+.d-sidebar-header {
+    text-shadow: none!important;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.cs-white-d .how-it-works, .cs-white-d .main-attractive-points {
+    padding-right: 0px;
+}
+#map {
+    border-radius: 16px;
+}
+/*destination page*/
+#map {
+    height: 600px;
+    width: 100%;
+}
+
+.route_line{
+    border-left: 2px solid #212121;
+    margin-top: 1px;
+    color: #fff;
+    margin-left: 4.5px;
+    height: 0%; /* Start at 0% height */
+    -webkit-animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
+    -moz-animation: increase 4s infinite forwards;
+    -o-animation: increase 4s infinite forwards;
+    animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
+    z-index: 9;
+}
+
+.route_line_fix {
+    margin-top: 1px;
+    color: #fff;
+    margin-left: 14px;
+    position: absolute;
+    z-index: 1;
+    height: 80px; /* Full height */
+    opacity: 0; /* Start as hidden */
+    transition: opacity 1s ease; /* Transition to fade in after animation */
+}
+
+@keyframes increase {
+    0% {
+        height: 0%;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+.col-1:hover .route_line_fix {
+    opacity: 1; /* Make it visible when hover or after animation */
+}
+/*destination page end*/
+.whatsincluded {
+    padding-top: 5px;
+    display: inline-block;
+}
+.whatsincluded img {
+    max-width: 20px;
+    margin-right: 5px;
+}
+.d-inline-block {
+    margin-right: 5px;
 }
 @media (max-width: 480px) {
     .main-header-container .mah-parent {

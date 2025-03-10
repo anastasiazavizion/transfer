@@ -11,19 +11,19 @@ const store = useStore();
 
 const topList = ref([
     {
-        image: storagePath('/header/your_route.svg'),
+        image: storagePath('/header/little_car_map_2.webp'),
         first_line: t('GET COST OF YOUR ROUTE IMMEDIATELY'),
         second_line: t('No email or telephone needed'),
     },
 
     {
-        image: storagePath('/header/manager.svg'),
+        image: storagePath('/call_center.webp'),
         first_line: t('ANY QUESTIONS ANY TIME'),
         second_line: t('Manager is in contact with You 24/7'),
     },
 
     {
-        image: storagePath('/header/portmone.svg'),
+        image: storagePath('/header/payment_with_card.webp'),
         first_line: t('NO PREPAYMENT NEEDED'),
         second_line: t('Pay after discussing details with manager')
     },

@@ -17,6 +17,8 @@ const { t } = useI18n();
 import CustomContentLoader from "../Components/CustomContentLoader.vue";
 import SidebarHeader from "../Components/SidebarHeader.vue";
 import MainContainer from "../Layouts/MainContainer.vue";
+import FAQ from "./Partials/FAQ.vue";
+import HowItWorks from "./Partials/HowItWorks.vue";
 
 const store = useStore();
 
@@ -53,7 +55,7 @@ function initMap(coordinates) {
         "elementType": "geometry",
         "stylers": [
           {
-            "color": "#56AE45"  // Gray color for geometry (land, water)
+            "color": "#eeeeee"  // Gray color for geometry (land, water)
           }
         ]
       },
@@ -141,10 +143,23 @@ function initMap(coordinates) {
   path.setMap(map);
 
   const markers = [
-    {position: {lat: coordinates[0]['lat'], lng: coordinates[0]['lng']}, label: data.value.city_from},
+    {
+        position: {lat: coordinates[0]['lat'], lng: coordinates[0]['lng']},
+        label: {
+            text: data.value.city_from,
+            color: "black", // Text color
+            fontSize: "22px", // Increase font size
+            fontWeight: "bold", // Make text bold
+        }
+    },
     {
       position: {lat: coordinates[coordinates.length - 1]['lat'], lng: coordinates[coordinates.length - 1]['lng']},
-      label: data.value.city_to
+        label: {
+            text: data.value.city_to,
+            color: "black", // Text color
+            fontSize: "22px", // Increase font size
+            fontWeight: "bold", // Make text bold
+        }
     }
   ];
 
@@ -160,7 +175,8 @@ function initMap(coordinates) {
 
 
 const passengersText = computed(()=>{
-    return data.adults > 1 ? t('PASSENGER') : t('PASSENGER');
+
+    return parseInt(data.value.adults) > 1 ? t('PASSENGERS') : t('PASSENGER');
 })
 
 const cars = computed(() => {
@@ -195,127 +211,108 @@ onMounted(async () => {
 </script>
 
 <template>
-    <MainContainer>
-        <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
+    <div class="cs-white cs-white-d">
+        <div class="cs-mid-white">
+            <MainContainer>
+                <div class="col-md-12 cm-spacer"></div>
+                <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
 
-            <CustomContentLoader v-if="isLoading"/>
+                    <CustomContentLoader v-if="isLoading"/>
 
-            <div v-if="!isLoading" class="sidebar-new sidebar-white">
-                <SidebarHeader class="text-black">{{$t('Your transfer')}}</SidebarHeader>
-                <hr>
+                    <div v-if="!isLoading" class="sidebar-new sidebar-white">
+                        <SidebarHeader class="text-black d-sidebar-header">{{$t('Your transfer')}}</SidebarHeader>
+                        <hr>
 
-                <SidebarRow>
-                    <SquareFigure/>
-                    <div class="route_line">-</div>
-                    <div class="route_line_fix">-</div>
-                    <template #second>
-                        <strong>{{data.address_from}}</strong>
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SquareFigure/>
+                            <div class="route_line">-</div>
+                            <div class="route_line_fix">-</div>
+                            <template #second>
+                                <strong>{{data.address_from}}</strong>
+                            </template>
+                        </SidebarRow>
 
-                <SidebarRow>
-                    <SquareFigure/>
-                    <template #second>
-                        <strong>{{data.address_to}}</strong>
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SquareFigure/>
+                            <template #second>
+                                <strong>{{data.address_to}}</strong>
+                            </template>
+                        </SidebarRow>
 
-                <SidebarRow>
-                    <SvgCalendar/>
-                    <template #second>
-                        <DateText :date="data.meeting_date"/>
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SvgCalendar/>
+                            <template #second>
+                                <DateText :date="data.meeting_date"/>
+                            </template>
+                        </SidebarRow>
 
-                <SidebarRow>
-                    <SvgTime/>
-                    <template #second>
-                        <TimeText :time="data.meeting_time"/>
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SvgTime/>
+                            <template #second>
+                                <TimeText :time="data.meeting_time"/>
+                            </template>
+                        </SidebarRow>
 
-                <hr>
+                        <hr>
 
-                <SidebarRow>
-                    <SvgPeople/>
-                    <template #second>
-                        {{data.adults}} {{passengersText}}
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SvgPeople/>
+                            <template #second>
+                                {{data.adults}} {{passengersText}}
+                            </template>
+                        </SidebarRow>
 
-                <SidebarRow>
-                    <SvgRoad/>
-                    <template #second>
-                        {{distance}}
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SvgRoad/>
+                            <template #second>
+                                {{distance}}
+                            </template>
+                        </SidebarRow>
 
-                <SidebarRow>
-                    <SvgDuration/>
-                    <template #second>
-                        {{duration}}
-                    </template>
-                </SidebarRow>
+                        <SidebarRow>
+                            <SvgDuration/>
+                            <template #second>
+                                {{duration}}
+                            </template>
+                        </SidebarRow>
 
-            </div>
+                    </div>
 
-        </div>
-        <div class="col-md-7 col-lg-8">
-            <div id="map"></div>
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <div id="map"></div>
 
-            <div class="row">
-                <div class="col">
-                    <CarsDiv v-if="!isLoading"
-                             :km_to_location_1="distance1" :km_to_location_2="distance" :km_to_location_3="distance3"
-                             :total="total" :data="data"  :cars="cars" :distance="distance" :duration="duration"></CarsDiv>
+                    <div class="row">
+                        <div class="col pd-0-25">
+                            <CarsDiv v-if="!isLoading"
+                                     :km_to_location_1="distance1" :km_to_location_2="distance" :km_to_location_3="distance3"
+                                     :total="total" :data="data"  :cars="cars" :distance="distance" :duration="duration"></CarsDiv>
+                        </div>
+                    </div>
+
+                </div>
+            </MainContainer>
+            <div class="container c-secondary-container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="main-attractive-points">
+                            <h2 class="wcu-header">
+                                {{$t('Why Choose Us')}}
+                            </h2>
+                            <FAQ/>
+                            <br>
+                            <!--                            <h2 class="faq-under-header">{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>-->
+                        </div>
+                        <div class="how-it-works">
+                            <h2 class="hiw-header">
+                                {{$t('How it Works')}}
+                            </h2>
+                            <HowItWorks/>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </MainContainer>
+    </div>
+
 </template>
-
-<style scoped>
-#map {
-  height: 600px;
-  width: 100%;
-}
-
-.route_line{
-    border-left: 2px solid #212121;
-    margin-top: 1px;
-    color: #fff;
-    margin-left: 4.5px;
-    height: 0%; /* Start at 0% height */
-    -webkit-animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
-    -moz-animation: increase 4s infinite forwards;
-    -o-animation: increase 4s infinite forwards;
-    animation: increase 4s infinite forwards; /* Repeat the animation infinitely */
-    z-index: 9;
-}
-
-.route_line_fix {
-    margin-top: 1px;
-    color: #fff;
-    margin-left: 14px;
-    position: absolute;
-    z-index: 1;
-    height: 80px; /* Full height */
-    opacity: 0; /* Start as hidden */
-    transition: opacity 1s ease; /* Transition to fade in after animation */
-}
-
-@keyframes increase {
-    0% {
-        height: 0%;
-    }
-    100% {
-        height: 50px;
-    }
-}
-
-.col-1:hover .route_line_fix {
-    opacity: 1; /* Make it visible when hover or after animation */
-}
-
-</style>
