@@ -112,12 +112,11 @@ class GoogleMapsService
 
     private function getTotal(string $distance1,string $distance2, string $distance3) : float
     {
-
         $total = $this->convertToKilometers($distance1) * config('map.price_per_1_km_to_location1') +
             $this->convertToKilometers($distance2) * config('map.price_per_1_km_to_location2') +
             $this->convertToKilometers($distance3) * config('map.price_per_1_km_to_location3');
 
-        return round($total,2);
+        return ceil($total);
     }
 
     public function getDistanceDuration(array $data): JsonResponse

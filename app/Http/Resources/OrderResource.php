@@ -20,6 +20,7 @@ class OrderResource extends JsonResource
             'address_from'=>$this->address_from,
             'address_to'=>$this->address_to,
             'meeting_date'=>$this->meeting_date,
+            'meeting_time'=>$this->meeting_time,
             'adults'=>$this->adults,
             'suitcases'=>$this->suitcases,
             'client'=>new ClientResource($this->client)

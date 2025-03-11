@@ -1,6 +1,5 @@
 <script setup>
-import storagePath from "@/hooks/storagePath.js";
-const logo = storagePath('logo.svg');
+const logo = '/images/logo.svg';
 </script>
 
 <template>

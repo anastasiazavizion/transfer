@@ -29,8 +29,6 @@ onMounted(async () => {
                 <div class="col-md-4">
 
                 </div>
-<!--                <div class="col-md-4"><a href="#" class="text-light">{{$t('Privacy Policy')}}</a></div>
-                <div class="col-md-4"><a href="#" class="text-light">{{$t('Terms & Conditions')}}</a></div>-->
                 <div class="col-md-4">
                     <ul class="navbar-nav">
                         <li class="nav-item nav-item-questions">{{ $t('Questions') }}?</li>

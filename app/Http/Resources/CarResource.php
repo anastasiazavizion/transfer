@@ -18,6 +18,9 @@ class CarResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
+            'type'=>$this->carType->name,
+            'max_people_amount'=>$this->max_people_amount,
+            'max_suitcase_amount'=>$this->max_suitcase_amount,
             'image'=>Storage::disk('public')->url($this->image),
         ];
     }

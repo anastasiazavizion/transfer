@@ -1,11 +1,9 @@
 <script setup>
-
 import MainContainer from "../../Layouts/MainContainer.vue";
 import {useStore} from "vuex";
 import {computed, onMounted} from "vue";
-import PrimaryButton from "../../Components/PrimaryButton.vue";
-import SvgEdit from "../../Components/SvgEdit.vue";
-import SvgDelete from "../../Components/SvgDelete.vue";
+import SvgEdit from "../../Components/Svg/SvgEdit.vue";
+import SvgDelete from "../../Components/Svg/SvgDelete.vue";
 import Swal from 'sweetalert2'
 import {useRouter} from "vue-router";
 

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <h2 class="mb-4 sidebar-header"><slot/></h2>
+    <h2 class="mb-2 sidebar-header"><slot/></h2>
 
 </template>
 

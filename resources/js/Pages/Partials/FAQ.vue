@@ -2,42 +2,41 @@
 import { useI18n } from 'vue-i18n';
 import {computed, reactive, watch} from 'vue';
 const { t, locale } = useI18n();
-import storagePath from "@/hooks/storagePath.js";
 
 const data = reactive([
   {
     id: 'faq1',
     keyLabel: 'Hate travelling by bus? Afraid of flights?',
     keyText: 'We understand you perfectly and will make your trip as comfortable as possible.',
-    img: storagePath('/faq/plane_and_bus_2.webp'),
+    img: '/images/faq/plane_and_bus_2.webp',
     showDefault: true,
   },
   {
     id: 'faq2',
     keyLabel: 'Want to travel with your beloved pets?',
     keyText: 'Travels with your furry friends on long distances are not very good for your nerves when use flights or public transport. We are here to help make your journey as comfy as possible.',
-    img: storagePath('/faq/cat_and_dog_2.webp'),
+    img: '/images/faq/cat_and_dog_2.webp',
     showDefault: false,
   },
   {
     id: 'faq3',
     keyLabel: 'Need to travel urgently?',
     keyText: 'There are times when you just need a quick and safe drive. We are here to help you.',
-    img: storagePath('/faq/time_clock_2.webp'),
+    img: '/images/faq/time_clock_2.webp',
     showDefault: false,
   },
   {
     id: 'faq4',
     keyLabel: 'Want to order a special route with several destinations?',
     keyText: 'This is a unique proposal from us compared to other competitors. You just need to give us the desired route from google maps to manager and we calculate the price immediately.',
-    img: storagePath('/header/little_car_map_2.webp'),
+    img: '/images/header/little_car_map_2.webp',
     showDefault: false,
   },
   {
     id: 'faq5',
     keyLabel: 'Want to pay with crypto (USDT)?',
     keyText: 'We accept payment in USDT, please note that the price in USDT will be +10%, means 1000 euros = 1100 USDT (based on currency exchange difference).',
-    img: storagePath('/faq/crypto_2.webp'),
+    img: '/images/faq/crypto_2.webp',
     showDefault: false,
   }
 ]);

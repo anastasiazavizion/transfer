@@ -521,9 +521,7 @@ h2.wcu-header {
 .cs-white-d .how-it-works, .cs-white-d .main-attractive-points {
     padding-right: 0px;
 }
-#map {
-    border-radius: 16px;
-}
+
 /*destination page*/
 #map {
     height: 600px;
@@ -578,6 +576,11 @@ h2.wcu-header {
 .d-inline-block {
     margin-right: 5px;
 }
+
+.border-radius-16{
+    border-radius: 16px;
+}
+
 @media (max-width: 480px) {
     .main-header-container .mah-parent {
         position: static;

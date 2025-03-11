@@ -5,25 +5,24 @@ import {useStore} from "vuex";
 import MainPhone from "../Components/MainPhone.vue";
 import {useI18n} from "vue-i18n";
 const {t} = useI18n();
-import storagePath from "@/hooks/storagePath.js";
 import Logo from "../Components/Logo.vue";
 const store = useStore();
 
 const topList = ref([
     {
-        image: storagePath('/header/little_car_map_2.webp'),
+        image: '/images/header/little_car_map_2.webp',
         first_line: t('GET COST OF YOUR ROUTE IMMEDIATELY'),
         second_line: t('No email or telephone needed'),
     },
 
     {
-        image: storagePath('/call_center.webp'),
+        image: '/images/call_center.webp',
         first_line: t('ANY QUESTIONS ANY TIME'),
         second_line: t('Manager is in contact with You 24/7'),
     },
 
     {
-        image: storagePath('/header/payment_with_card.webp'),
+        image: '/images/header/payment_with_card.webp',
         first_line: t('NO PREPAYMENT NEEDED'),
         second_line: t('Pay after discussing details with manager')
     },

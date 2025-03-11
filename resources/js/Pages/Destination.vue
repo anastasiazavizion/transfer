@@ -2,12 +2,13 @@
 import {computed, onMounted, ref} from "vue";
 import {useStore} from "vuex";
 import DateText from "../Components/DateText.vue";
-import TimeText from "../Components/TimeText.vue";
-import SvgCalendar from "../Components/SvgCalendar.vue";
-import SvgTime from "../Components/SvgTime.vue";
-import SvgPeople from "../Components/SvgPeople.vue";
-import SvgRoad from "../Components/SvgRoad.vue";
-import SvgDuration from "../Components/SvgDuration.vue";
+import TimeText from "../Components/Destination/TimeText.vue";
+import SvgCalendar from "../Components/Svg/SvgCalendar.vue";
+import SvgTime from "../Components/Svg/SvgTime.vue";
+import SvgPeople from "../Components/Svg/SvgPeople.vue";
+import SvgRoad from "../Components/Svg/SvgRoad.vue";
+import SvgSuitcase from "../Components/Svg/SvgSuitcase.vue";
+import SvgDuration from "../Components/Svg/SvgDuration.vue";
 import SidebarRow from "../Components/SidebarRow.vue";
 import SquareFigure from "../Components/SquareFigure.vue";
 import CarsDiv from "./Partials/Cars.vue";
@@ -17,8 +18,7 @@ const { t } = useI18n();
 import CustomContentLoader from "../Components/CustomContentLoader.vue";
 import SidebarHeader from "../Components/SidebarHeader.vue";
 import MainContainer from "../Layouts/MainContainer.vue";
-import FAQ from "./Partials/FAQ.vue";
-import HowItWorks from "./Partials/HowItWorks.vue";
+import AboutUs from "./Partials/AboutUs.vue";
 
 const store = useStore();
 
@@ -150,7 +150,8 @@ function initMap(coordinates) {
             color: "black", // Text color
             fontSize: "22px", // Increase font size
             fontWeight: "bold", // Make text bold
-        }
+        },
+        title: data.value.city_from
     },
     {
       position: {lat: coordinates[coordinates.length - 1]['lat'], lng: coordinates[coordinates.length - 1]['lng']},
@@ -159,7 +160,8 @@ function initMap(coordinates) {
             color: "black", // Text color
             fontSize: "22px", // Increase font size
             fontWeight: "bold", // Make text bold
-        }
+        },
+        title: data.value.city_to
     }
   ];
 
@@ -167,7 +169,7 @@ function initMap(coordinates) {
     new google.maps.Marker({
       position: markerData.position,
       map: map,
-      title: markerData.label,
+      title: markerData.title,
       label: markerData.label,
     });
   });
@@ -175,8 +177,11 @@ function initMap(coordinates) {
 
 
 const passengersText = computed(()=>{
-
     return parseInt(data.value.adults) > 1 ? t('PASSENGERS') : t('PASSENGER');
+})
+
+const suitcasesText = computed(()=>{
+    return parseInt(data.value.suitcases) > 1 ? t('SUITCASES') : t('SUITCASE');
 })
 
 const cars = computed(() => {
@@ -204,9 +209,7 @@ onMounted(async () => {
       initMap(responseCoordinates.data.coordinates);
       isLoading.value = false;
     }
-
   }
-
 })
 </script>
 
@@ -215,9 +218,9 @@ onMounted(async () => {
         <div class="cs-mid-white">
             <MainContainer>
                 <div class="col-md-12 cm-spacer"></div>
-                <div class="col-md-5 col-lg-4 sidebar d-flex flex-column mb-4">
+                <div class="col-md-5 col-lg-4 sidebar d-flex flex-column border-radius-16">
 
-                    <CustomContentLoader v-if="isLoading"/>
+                    <CustomContentLoader class="bg-white border-radius-16" v-if="isLoading"/>
 
                     <div v-if="!isLoading" class="sidebar-new sidebar-white">
                         <SidebarHeader class="text-black d-sidebar-header">{{$t('Your transfer')}}</SidebarHeader>
@@ -238,6 +241,12 @@ onMounted(async () => {
                                 <strong>{{data.address_to}}</strong>
                             </template>
                         </SidebarRow>
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                               <span class="fw-bold">{{$t('Date and time')}}:</span>
+                            </div>
+                        </div>
 
                         <SidebarRow>
                             <SvgCalendar/>
@@ -263,6 +272,13 @@ onMounted(async () => {
                         </SidebarRow>
 
                         <SidebarRow>
+                            <SvgSuitcase/>
+                            <template #second>
+                                {{data.suitcases}} {{suitcasesText}}
+                            </template>
+                        </SidebarRow>
+
+                        <SidebarRow>
                             <SvgRoad/>
                             <template #second>
                                 {{distance}}
@@ -280,7 +296,7 @@ onMounted(async () => {
 
                 </div>
                 <div class="col-md-7 col-lg-8">
-                    <div id="map"></div>
+                    <div id="map" class="border-radius-16"></div>
 
                     <div class="row">
                         <div class="col pd-0-25">
@@ -292,26 +308,9 @@ onMounted(async () => {
 
                 </div>
             </MainContainer>
-            <div class="container c-secondary-container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="main-attractive-points">
-                            <h2 class="wcu-header">
-                                {{$t('Why Choose Us')}}
-                            </h2>
-                            <FAQ/>
-                            <br>
-                            <!--                            <h2 class="faq-under-header">{{$t('We have all what you need to make a comfy move from point A to point B')}}</h2>-->
-                        </div>
-                        <div class="how-it-works">
-                            <h2 class="hiw-header">
-                                {{$t('How it Works')}}
-                            </h2>
-                            <HowItWorks/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <AboutUs/>
+
         </div>
     </div>
 

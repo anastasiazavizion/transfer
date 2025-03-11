@@ -1,6 +1,5 @@
 <script setup>
 
-import SquareFigure from "./SquareFigure.vue";
 </script>
 
 <template>
