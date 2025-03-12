@@ -268,7 +268,7 @@ h2.sidebar-header {
     padding-top: 0px;
 }
 .cs-white {
-    background-image: url(http://localhost:5173/storage/app/public/coastal_road.webp);
+    background-image: url(/public/images/coastal_road.webp);
     background-repeat: no-repeat;
     background-size: 100%;
 }
